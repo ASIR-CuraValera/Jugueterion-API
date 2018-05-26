@@ -1,0 +1,52 @@
+BDBundle\Entity\Comentarios:
+    type: entity
+    table: comentarios
+    indexes:
+        usuario_id:
+            columns:
+                - usuario_id
+        juguete_id:
+            columns:
+                - juguete_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        texto:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        creadoEn:
+            type: date
+            nullable: false
+            column: creado_en
+    manyToOne:
+        usuario:
+            targetEntity: Usuarios
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                usuario_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        juguete:
+            targetEntity: Juguetes
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                juguete_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

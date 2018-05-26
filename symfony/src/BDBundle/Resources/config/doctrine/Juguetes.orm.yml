@@ -1,0 +1,84 @@
+BDBundle\Entity\Juguetes:
+    type: entity
+    table: juguetes
+    indexes:
+        fabricante_id:
+            columns:
+                - fabricante_id
+        usuario_id:
+            columns:
+                - usuario_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        titulo:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        descripcion:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        estado:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        imagen:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        precio:
+            type: decimal
+            nullable: false
+            precision: 10
+            scale: 0
+        stock:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        creadoEn:
+            type: date
+            nullable: false
+            column: creado_en
+        actualizadoEn:
+            type: date
+            nullable: false
+            column: actualizado_en
+    manyToOne:
+        fabricante:
+            targetEntity: Fabricantes
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                fabricante_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        usuario:
+            targetEntity: Usuarios
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                usuario_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

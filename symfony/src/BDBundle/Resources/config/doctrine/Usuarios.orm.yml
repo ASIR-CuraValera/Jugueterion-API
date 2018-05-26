@@ -1,0 +1,60 @@
+BDBundle\Entity\Usuarios:
+    type: entity
+    table: usuarios
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        rol:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        nick:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        nombre:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        apellidos:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        email:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        password:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        avatar:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        creadoEn:
+            type: date
+            nullable: false
+            column: creado_en
+    lifecycleCallbacks: {  }

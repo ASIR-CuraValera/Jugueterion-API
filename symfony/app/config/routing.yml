@@ -1,7 +1,7 @@
-bd:
-    resource: "@BDBundle/Resources/config/routing.yml"
-    prefix:   /
-
 app:
     resource: "@AppBundle/Resources/config/routing.yml"
     prefix: /
+
+#bd:
+#    resource: "@BDBundle/Resources/config/routing.yml"
+#    prefix:   /bd

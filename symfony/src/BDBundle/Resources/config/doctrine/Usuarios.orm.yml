@@ -1,6 +1,7 @@
 BDBundle\Entity\Usuarios:
     type: entity
     table: usuarios
+    #repositoryClass: BDBundle\Entity\UsuariosRepository
     id:
         id:
             type: integer
@@ -12,11 +13,10 @@ BDBundle\Entity\Usuarios:
                 strategy: IDENTITY
     fields:
         rol:
-            type: text
+            type: integer
             nullable: false
-            length: 65535
             options:
-                fixed: false
+                unsigned: false
         nick:
             type: text
             nullable: false

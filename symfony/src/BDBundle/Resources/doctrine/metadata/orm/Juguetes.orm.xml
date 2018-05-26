@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Juguetes" table="juguetes">
+    <indexes>
+      <index name="fabricante_id" columns="fabricante_id"/>
+      <index name="usuario_id" columns="usuario_id"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="titulo" type="text" column="titulo" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="descripcion" type="text" column="descripcion" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="estado" type="text" column="estado" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="imagen" type="text" column="imagen" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="precio" type="decimal" column="precio" precision="10" scale="0" nullable="false"/>
+    <field name="stock" type="integer" column="stock" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="creadoEn" type="date" column="creado_en" nullable="false"/>
+    <field name="actualizadoEn" type="date" column="actualizado_en" nullable="false"/>
+    <many-to-one field="fabricante" target-entity="Fabricantes" fetch="LAZY">
+      <join-columns>
+        <join-column name="fabricante_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="usuario" target-entity="Usuarios" fetch="LAZY">
+      <join-columns>
+        <join-column name="usuario_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

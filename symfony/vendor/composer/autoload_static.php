@@ -50,9 +50,17 @@ class ComposerStaticInit257aecbedd8244b2f03e9bd4f07f6f8a
         array (
             'Monolog\\' => 8,
         ),
+        'K' => 
+        array (
+            'Knp\\Bundle\\PaginatorBundle\\' => 27,
+        ),
         'I' => 
         array (
             'Incenteev\\ParameterHandler\\' => 27,
+        ),
+        'F' => 
+        array (
+            'Firebase\\JWT\\' => 13,
         ),
         'D' => 
         array (
@@ -153,9 +161,17 @@ class ComposerStaticInit257aecbedd8244b2f03e9bd4f07f6f8a
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
+        'Knp\\Bundle\\PaginatorBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/knplabs/knp-paginator-bundle',
+        ),
         'Incenteev\\ParameterHandler\\' => 
         array (
             0 => __DIR__ . '/..' . '/incenteev/composer-parameter-handler',
+        ),
+        'Firebase\\JWT\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/firebase/php-jwt/src',
         ),
         'Doctrine\\Instantiator\\' => 
         array (
@@ -200,6 +216,13 @@ class ComposerStaticInit257aecbedd8244b2f03e9bd4f07f6f8a
             'SensioLabs\\Security' => 
             array (
                 0 => __DIR__ . '/..' . '/sensiolabs/security-checker',
+            ),
+        ),
+        'K' => 
+        array (
+            'Knp\\Component' => 
+            array (
+                0 => __DIR__ . '/..' . '/knplabs/knp-components/src',
             ),
         ),
         'D' => 

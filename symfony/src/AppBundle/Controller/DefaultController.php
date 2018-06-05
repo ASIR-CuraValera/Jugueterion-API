@@ -3,11 +3,9 @@
 namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
-use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Validator\Constraints\Email;
 
 class DefaultController extends Controller
 {
@@ -19,27 +17,46 @@ class DefaultController extends Controller
         ]);
     }
 
+    public function loginAction(Request $request)
+    {
+        $helpers = $this->get("app.helpers");
+        $jwt_auth = $this->get("app.jwt_auth");
+
+        $json = $request->get("json", null);
+
+        if($json != null) {
+            $params = json_decode($json);
+
+            $email = @$params->email;
+            $password = @$params->password;
+
+            $emailConstraint = new Email();
+            $emailConstraint->message = "Email no válido.";
+
+            $validateMail = $this->get("validator")->validate($email, $emailConstraint);
+
+            if(count($validateMail) == 0 && $password != null)
+            {
+                //die($password);
+                $singup = $jwt_auth->singup($email, $password);
+                return new JsonResponse($singup);
+            }
+            else
+            {
+                die("count: ".$json);
+            }
+        }
+
+        return null;
+    }
 
     public function pruebasAction(Request $request)
     {
+        $helpers = $this->get("app.helpers");
+
         $em = $this->getDoctrine()->getManager();
         $users = $em->getRepository("BDBundle:Usuarios")->findAll();
 
-        return $this->json($users);
-    }
-
-    public function json($data)
-    {
-        $normalizers = array(new GetSetMethodNormalizer());
-        $encoders = array("json" => new JsonEncoder());
-
-        $serializer = new Serializer($normalizers, $encoders);
-        $json = $serializer->serialize($data, 'json');
-
-        $response = new Response();
-        $response->setContent($json);
-        $response->headers->set("Content-Type", "application/json");
-
-        return $response;
+        return $helpers->json($users);
     }
 }

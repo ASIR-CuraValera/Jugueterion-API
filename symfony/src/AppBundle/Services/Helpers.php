@@ -15,6 +15,26 @@ use Symfony\Component\Serializer\Serializer;
 
 class Helpers
 {
+    public $jwt_auth;
+
+    public function __construct($jwt_auth)
+    {
+        $this->jwt_auth = $jwt_auth;
+    }
+
+    public function authCheck($hash, $getIdentity = false) {
+        $jwt_auth = $this->jwt_auth;
+
+        $auth = false;
+        if($hash != null)
+        {
+            $auth = $jwt_auth->checkToken($hash, $getIdentity);
+            //$auth = $value === true || is_object($value);
+        }
+
+        return $auth;
+    }
+
     public function json($data)
     {
         $normalizers = array(new GetSetMethodNormalizer());

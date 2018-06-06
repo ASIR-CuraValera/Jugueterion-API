@@ -40,14 +40,18 @@ class UserController extends Controller
 
             $validateMail = $this->get("validator")->validate($email, $emailConstraint);
 
-            if(isset($email) && count($validateMail) == 0 && isset($password) && isset($nick) && isset($nombre) && isset($apellidos)) {
+            if(isset($email) && count($validateMail) == 0 && isset($password) && isset($nick) && isset($nombre) && isset($apellidos))
+            {
+                // Cifrar contraseña
+                $pwd = hash('hs256', $password);
+
                 $user = new Usuarios();
 
                 $user->setCreadoEn($creadoEn);
                 $user->setNick($nick);
                 $user->setNombre($nombre);
                 $user->setApellidos($apellidos);
-                $user->setPassword($password);
+                $user->setPassword($pwd);
                 $user->setEmail($email);
                 $user->setRol($rol);
                 $user->setAvatar($avatar);
@@ -60,6 +64,7 @@ class UserController extends Controller
                     $em->flush();
 
                     $data["status"] = 'success';
+                    $data["code"] = 200;
                     $data["msg"] = 'New user created!!';
                 }
                 else

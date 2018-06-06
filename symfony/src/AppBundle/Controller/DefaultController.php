@@ -38,7 +38,8 @@ class DefaultController extends Controller
 
             if(count($validateMail) == 0 && $password != null)
             {
-                $singup = $jwt_auth->singup($email, $password, $getHash);
+                $pwd = hash('hs256', $password);
+                $singup = $jwt_auth->singup($email, $pwd, $getHash);
                 return new JsonResponse($singup);
             }
             else

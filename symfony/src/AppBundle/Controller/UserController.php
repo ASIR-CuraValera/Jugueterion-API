@@ -184,22 +184,28 @@ class UserController extends Controller
 
             if(!empty($file) && $file != null) {
                 $ext = $file->guessExtension();
-                $file_name = time().".".$ext;
-                $file->move("uploads/users", $file_name);
+                if($ext == "jpeg" || $ext == "jpg" || $ext == "png" || $ext == "gif")
+                {
+                    $file_name = time().".".$ext;
+                    $file->move("uploads/users", $file_name);
 
-                $user->setAvatar($file_name);
-                $em->persist($user);
-                $em->flush();
+                    $user->setAvatar($file_name);
+                    $em->persist($user);
+                    $em->flush();
 
-                $data = array("status" => "success");
+                    $data = array("status" => "success");
+                }
+                else {
+                    $data = array("status" => "error", "msg" => "Extension de avatar no valida!");
+                }
             }
             else
                 {
-                $data = array("status" => "error");
+                $data = array("status" => "error", "msg" => "Archivo de avatar no valido!");
             }
         }
         else {
-            $data = array("status" => "error");
+            $data = array("status" => "error", "msg" => "Login no valido!");
         }
 
         return $helpers->json($data);

@@ -14,9 +14,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class JugueteController extends Controller
 {
-    public function newAction(Request $request) {
+    public function newAction(Request $request)
+    {
         $helpers = $this->get("app.helpers");
-        $jwt_auth = $this->get("app.jwt_auth");
 
         $hash = $request->get("authorization", null);
         $authCheck = $helpers->authCheck($hash);
@@ -77,6 +77,74 @@ class JugueteController extends Controller
                     ));
 
                     $data = array("status" => "success", "data" => $juguete);
+                }
+                else
+                    $data = array("status" => "error", "msg" => "Debes establecer todos los parametros del juguete!");
+            }
+
+        }
+        else
+            $data = array("status" => "error", "code" => 400, "msg" => "Authorization not valid!!");
+
+        return $helpers->json($data);
+    }
+
+    public function editAction(Request $request, $video_id = null) {
+        $helpers = $this->get("app.helpers");
+        $jwt_auth = $this->get("app.jwt_auth");
+
+        $hash = $request->get("authorization", null);
+        $authCheck = $helpers->authCheck($hash);
+
+        $data = array();
+
+        if($authCheck == true)
+        {
+            $identity = $helpers->authCheck($hash, true);
+
+            $json = $request->get("json", null);
+
+            if(isset($json)) {
+                $params = json_decode($json);
+
+                $creadoEn = new \DateTime('now');
+                $actualizadoEn = new \DateTime('now');
+                $imagen = null;
+
+                $titulo = @$params->titulo;
+                $descripcion = @$params->descripcion;
+                $stock = @$params->stock;
+                $precio = @$params->precio;
+                $estado = @$params->estado;
+
+                // WIP: Tengo que integrar lo de los fabricantes
+                if(isset($titulo) && isset($descripcion) && isset($stock) && isset($precio) && isset($estado))
+                {
+                    $em = $this->getDoctrine()->getManager();
+
+                    $juguete = $em->getRepository("BDBundle:Juguetes")->findOneBy(array("id" => $video_id));
+
+                    if(isset($juguete))
+                    { // WIP: Si eres admin esta restriccion se va
+                        if(isset($identity->sub) && $identity->sub == $juguete->getUser()->getId())
+                        {
+                            $juguete->setCreadoEn($creadoEn);
+                            $juguete->setActualizadoEn($actualizadoEn);
+                            $juguete->setTitulo($titulo);
+                            $juguete->setDescripcion($descripcion);
+                            $juguete->setImagen(isset($imagen) ? $imagen : "uploads/juguete/default.png");
+                            $juguete->setPrecio($precio);
+                            $juguete->setStock($stock);
+                            $juguete->setEstado($estado);
+
+                            $em->persist($juguete);
+                            $em->flush();
+
+                            $data = array("status" => "success", "msg" => "Video editado correctamente!");
+                        }
+                        else
+                            $data = array("status" => "error", "msg" => "No eres el propietario de este video!");
+                    }
                 }
                 else
                     $data = array("status" => "error", "msg" => "Debes establecer todos los parametros del juguete!");

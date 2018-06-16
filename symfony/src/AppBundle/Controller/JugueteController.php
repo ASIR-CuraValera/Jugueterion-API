@@ -89,9 +89,10 @@ class JugueteController extends Controller
         return $helpers->json($data);
     }
 
-    public function editAction(Request $request, $video_id = null) {
+    public function editAction(Request $request, $id = null)
+    {
+        $juguete_id = $id;
         $helpers = $this->get("app.helpers");
-        $jwt_auth = $this->get("app.jwt_auth");
 
         $hash = $request->get("authorization", null);
         $authCheck = $helpers->authCheck($hash);
@@ -122,11 +123,11 @@ class JugueteController extends Controller
                 {
                     $em = $this->getDoctrine()->getManager();
 
-                    $juguete = $em->getRepository("BDBundle:Juguetes")->findOneBy(array("id" => $video_id));
+                    $juguete = $em->getRepository("BDBundle:Juguetes")->findOneBy(array("id" => $juguete_id));
 
                     if(isset($juguete))
                     { // WIP: Si eres admin esta restriccion se va
-                        if(isset($identity->sub) && $identity->sub == $juguete->getUser()->getId())
+                        if(isset($identity->sub) && $identity->sub == $juguete->getUsuario()->getId())
                         {
                             $juguete->setCreadoEn($creadoEn);
                             $juguete->setActualizadoEn($actualizadoEn);
@@ -143,8 +144,10 @@ class JugueteController extends Controller
                             $data = array("status" => "success", "msg" => "Video editado correctamente!");
                         }
                         else
-                            $data = array("status" => "error", "msg" => "No eres el propietario de este video!");
+                            $data = array("status" => "error", "msg" => "No eres el propietario de este juguete!");
                     }
+                    else
+                        $data = array("status" => "error", "msg" => "Juguete no encontrado!");
                 }
                 else
                     $data = array("status" => "error", "msg" => "Debes establecer todos los parametros del juguete!");

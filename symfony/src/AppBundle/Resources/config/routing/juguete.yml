@@ -1,0 +1,4 @@
+juguete_new:
+    path: /new
+    defaults: { _controller: "AppBundle:Juguete:pruebas" }
+    methods: POST

@@ -193,7 +193,7 @@ class UserController extends Controller
                     $em->persist($user);
                     $em->flush();
 
-                    $data = array("status" => "success");
+                    $data = array("status" => "success", "msg" => "Avatar de usuario cambiado correctamente!");
                 }
                 else {
                     $data = array("status" => "error", "msg" => "Extension de avatar no valida!");

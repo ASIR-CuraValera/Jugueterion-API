@@ -7,3 +7,8 @@ juguete_edit:
     path: /edit/{id}
     defaults: { _controller: "AppBundle:Juguete:edit", id:null }
     methods: POST
+
+juguete_upload:
+    path: /upload-image/{id}
+    defaults: { _controller: "AppBundle:Juguete:upload", id:null }
+    methods: POST

@@ -105,7 +105,8 @@ class JugueteController extends Controller
 
             $json = $request->get("json", null);
 
-            if(isset($json)) {
+            if(isset($json))
+            {
                 $params = json_decode($json);
 
                 $creadoEn = new \DateTime('now');
@@ -152,7 +153,63 @@ class JugueteController extends Controller
                 else
                     $data = array("status" => "error", "msg" => "Debes establecer todos los parametros del juguete!");
             }
+            else
+                $data = array("status" => "error", "msg" => "JSON vacio!");
+        }
+        else
+            $data = array("status" => "error", "code" => 400, "msg" => "Authorization not valid!!");
 
+        return $helpers->json($data);
+    }
+
+    public function uploadAction(Request $request, $id = null)
+    {
+        $juguete_id = $id;
+        $helpers = $this->get("app.helpers");
+
+        $hash = $request->get("authorization", null);
+        $authCheck = $helpers->authCheck($hash);
+
+        $data = array();
+
+        if($authCheck == true)
+        {
+            $identity = $helpers->authCheck($hash, true);
+
+            $em = $this->getDoctrine()->getManager();
+
+            $juguete = $em->getRepository("BDBundle:Juguetes")->findOneBy(array("id" => $juguete_id));
+
+            if(isset($juguete))
+            { // WIP: Si eres admin esta restriccion se va
+                if(isset($identity->sub) && $identity->sub == $juguete->getUsuario()->getId())
+                {
+                    $juguete_imagen = $request->files->get('imagen', null);
+
+                    if(isset($juguete_imagen))
+                    {
+                        $ext = $juguete_imagen->guessExtension();
+                        if($ext == "jpeg" || $ext == "jpg" || $ext == "png" || $ext == "gif")
+                        {
+                            $file_name = time().".".$ext;
+                            $juguete_imagen->move("uploads/users", $file_name);
+
+                            $juguete->setImagen($file_name);
+                            $em->persist($juguete);
+                            $em->flush();
+
+                            $data = array("status" => "success", "msg" => "Imagen de juguete subida correctamente!");
+                        }
+                        else {
+                            $data = array("status" => "error", "msg" => "Extension de avatar no valida!");
+                        }
+                    }
+                }
+                else
+                    $data = array("status" => "error", "msg" => "No eres el propietario de este juguete!");
+            }
+            else
+                $data = array("status" => "error", "msg" => "Juguete no encontrado!");
         }
         else
             $data = array("status" => "error", "code" => 400, "msg" => "Authorization not valid!!");

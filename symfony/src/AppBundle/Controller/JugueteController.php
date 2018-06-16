@@ -244,4 +244,24 @@ class JugueteController extends Controller
 
         return $helpers->json($data);
     }
+
+    public function lastAction(Request $request)
+    {
+        $helpers = $this->get("app.helpers");
+
+        $em = $this->getDoctrine()->getManager();
+
+        $dql = "SELECT j FROM BDBundle:Juguetes j ORDER BY j.creadoEn DESC";
+        $query = $em->createQuery($dql)->setMaxResults(5);
+        $juguetes = $query->getResult();
+
+        $data = array("status" => "success", "data" => $juguetes);
+
+        return $helpers->json($data);
+    }
+
+    public function detailAction(Request $request, $id = null)
+    {
+
+    }
 }

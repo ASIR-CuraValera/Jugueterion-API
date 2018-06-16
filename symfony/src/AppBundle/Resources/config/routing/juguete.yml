@@ -17,3 +17,13 @@ juguete_list:
     path: /list
     defaults: { _controller: "AppBundle:Juguete:list" }
     methods: GET
+
+juguete_last:
+    path: /last
+    defaults: { _controller: "AppBundle:Juguete:last" }
+    methods: GET
+
+juguete_detail:
+    path: /detail/{id}
+    defaults: { _controller: "AppBundle:Juguete:detail", id:null }
+    methods: GET

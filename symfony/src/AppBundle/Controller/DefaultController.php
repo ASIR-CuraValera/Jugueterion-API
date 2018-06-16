@@ -2,10 +2,12 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Services\JwtAuth;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Email;
+use Firebase\JWT\JWT;
 
 class DefaultController extends Controller
 {
@@ -38,7 +40,8 @@ class DefaultController extends Controller
 
             if(count($validateMail) == 0 && $password != null)
             {
-                $pwd = hash('hs256', $password);
+                // JWT::encode($token, $key, 'HS256')
+                $pwd = JWT::encode($password, $jwt_auth->key, 'HS256'); //hash('HS256', $password);
                 $singup = $jwt_auth->singup($email, $pwd, $getHash);
                 return new JsonResponse($singup);
             }

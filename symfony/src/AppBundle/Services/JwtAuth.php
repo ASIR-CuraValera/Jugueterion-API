@@ -15,7 +15,7 @@ use Symfony\Component\Serializer\Exception\UnexpectedValueException;
 class JwtAuth
 {
     private $manager;
-    private $key = "clave-secreta";
+    public $key = "clave-secreta";
 
     public function __construct($manager) {
         $this->manager = $manager;
@@ -41,8 +41,6 @@ class JwtAuth
                 return JWT::encode($token, $key, 'HS256');
             else
                 return JWT::decode($getHash, $key, array('HS256'));
-
-            //return array("status" => "success", "data" => "OK");
         }
         else
             return array("status" => "error", "data" => "NOT OK!");

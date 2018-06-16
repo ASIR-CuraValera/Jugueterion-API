@@ -12,12 +12,14 @@ use BDBundle\Entity\Usuarios;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Email;
+use Firebase\JWT\JWT;
 
 class UserController extends Controller
 {
     public function newAction(Request $request)
     {
         $helpers = $this->get("app.helpers");
+        $jwt_auth = $this->get("app.jwt_auth");
 
         $json = $request->get("json", null);
         $params = json_decode($json);
@@ -44,7 +46,7 @@ class UserController extends Controller
             if(isset($email) && count($validateMail) == 0 && isset($password) && isset($nick) && isset($nombre) && isset($apellidos))
             {
                 // Cifrar contraseña
-                $pwd = hash('hs256', $password);
+                $pwd = JWT::encode($password, $jwt_auth->key, 'HS256'); //hash('hs256', $password);
 
                 $user = new Usuarios();
 
@@ -83,6 +85,7 @@ class UserController extends Controller
     public function editAction(Request $request)
     {
         $helpers = $this->get("app.helpers");
+        $jwt_auth = $this->get("app.jwt_auth");
 
         $hash = $request->get("authorization", null);
         $authCheck = $helpers->authCheck($hash);
@@ -123,7 +126,7 @@ class UserController extends Controller
                     // Cifrar contraseña
                     if(isset($password))
                     {
-                        $pwd = hash('hs256', $password);
+                        $pwd = JWT::encode($password, $jwt_auth->key, 'HS256'); //hash('hs256', $password);
                         $user->setPassword($pwd);
                     }
 
@@ -159,6 +162,45 @@ class UserController extends Controller
         else
             $data = array("status" => "error", "code" => 400, "msg" => "Authorization not valid!!");
 
+
+        return $helpers->json($data);
+    }
+
+    public function uploadImageAction(Request $request)
+    {
+        $helpers = $this->get("app.helpers");
+
+        $hash = $request->get("authorization", null);
+        $authCheck = $helpers->authCheck($hash);
+
+        if($authCheck) {
+            $identity = $helpers->authCheck($hash, true);
+
+            $em = $this->getDoctrine()->getManager();
+            $user = $em->getRepository("BDBundle:Usuarios")->findOneBy(array("id" => $identity->sub));
+
+            //Subir archivo
+            $file = $request->files->get("image");
+
+            if(!empty($file) && $file != null) {
+                $ext = $file->guessExtension();
+                $file_name = time().".".$ext;
+                $file->move("uploads/users", $file_name);
+
+                $user->setAvatar($file_name);
+                $em->persist($user);
+                $em->flush();
+
+                $data = array("status" => "success");
+            }
+            else
+                {
+                $data = array("status" => "error");
+            }
+        }
+        else {
+            $data = array("status" => "error");
+        }
 
         return $helpers->json($data);
     }

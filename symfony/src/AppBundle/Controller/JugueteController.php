@@ -276,4 +276,34 @@ class JugueteController extends Controller
 
         return $helpers->json($data);
     }
+
+    // Parece que no funciona, revisar
+    public function searchAction(Request $request, $search = null)
+    {
+        $helpers = $this->get("app.helpers");
+        $em = $this->getDoctrine()->getManager();
+
+        $search_dql = isset($search) ? "WHERE j.titulo LIKE '%search%' OR j.descripcion LIKE '%search%'" : "";
+
+        $dql = "SELECT j FROM BDBundle:Juguetes j ".$search_dql." ORDER BY j.id DESC";
+        $query = $em->createQuery($dql);
+
+        $page = $request->query->getInt("page", 1);
+        $paginator = $this->get("knp_paginator");
+        $items_per_page = 6;
+
+        $pagination = $paginator->paginate($query, $page, $items_per_page);
+        $total_items_count = $pagination->getTotalItemCount();
+
+        $data = array(
+            "status" => "success",
+            "total_items_count" => $total_items_count,
+            "actual_page" => $page,
+            "items_per_page" => $items_per_page,
+            "total_pages" => ceil($total_items_count / $items_per_page),
+            "data" => $pagination
+        );
+
+        return $helpers->json($data);
+    }
 }

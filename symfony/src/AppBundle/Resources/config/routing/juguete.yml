@@ -27,3 +27,8 @@ juguete_detail:
     path: /detail/{id}
     defaults: { _controller: "AppBundle:Juguete:detail", id:null }
     methods: GET
+
+juguete_search:
+    path: /search/{search}
+    defaults: { _controller: "AppBundle:Juguete:search", search:null }
+    methods: GET

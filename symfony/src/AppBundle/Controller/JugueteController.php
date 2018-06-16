@@ -220,7 +220,6 @@ class JugueteController extends Controller
     public function listAction(Request $request)
     {
         $helpers = $this->get("app.helpers");
-
         $em = $this->getDoctrine()->getManager();
 
         $dql = "SELECT j FROM BDBundle:Juguetes j ORDER BY j.id DESC";
@@ -248,7 +247,6 @@ class JugueteController extends Controller
     public function lastAction(Request $request)
     {
         $helpers = $this->get("app.helpers");
-
         $em = $this->getDoctrine()->getManager();
 
         $dql = "SELECT j FROM BDBundle:Juguetes j ORDER BY j.creadoEn DESC";
@@ -262,6 +260,20 @@ class JugueteController extends Controller
 
     public function detailAction(Request $request, $id = null)
     {
+        $juguete_id = $id;
+        $helpers = $this->get("app.helpers");
+        $em = $this->getDoctrine()->getManager();
 
+        $juguete = $em->getRepository("BDBundle:Juguetes")->findOneBy(array("id" => $juguete_id));
+
+        $data = array("status" => "error", "msg" => "El juguete no existe!");
+
+        if(isset($juguete))
+        {
+            $data["status"] = "success";
+            $data["data"] = $juguete;
+        }
+
+        return $helpers->json($data);
     }
 }

@@ -192,7 +192,7 @@ class JugueteController extends Controller
                         if($ext == "jpeg" || $ext == "jpg" || $ext == "png" || $ext == "gif")
                         {
                             $file_name = time().".".$ext;
-                            $juguete_imagen->move("uploads/users", $file_name);
+                            $juguete_imagen->move("uploads/juguete", $file_name);
 
                             $juguete->setImagen($file_name);
                             $em->persist($juguete);
@@ -213,6 +213,34 @@ class JugueteController extends Controller
         }
         else
             $data = array("status" => "error", "code" => 400, "msg" => "Authorization not valid!!");
+
+        return $helpers->json($data);
+    }
+
+    public function listAction(Request $request)
+    {
+        $helpers = $this->get("app.helpers");
+
+        $em = $this->getDoctrine()->getManager();
+
+        $dql = "SELECT j FROM BDBundle:Juguetes j ORDER BY j.id DESC";
+        $query = $em->createQuery($dql);
+
+        $page = $request->query->getInt("page", 1);
+        $paginator = $this->get("knp_paginator");
+        $items_per_page = 6;
+
+        $pagination = $paginator->paginate($query, $page, $items_per_page);
+        $total_items_count = $pagination->getTotalItemCount();
+
+        $data = array(
+            "status" => "success",
+            "total_items_count" => $total_items_count,
+            "actual_page" => $page,
+            "items_per_page" => $items_per_page,
+            "total_pages" => ceil($total_items_count / $items_per_page),
+            "data" => $pagination
+        );
 
         return $helpers->json($data);
     }

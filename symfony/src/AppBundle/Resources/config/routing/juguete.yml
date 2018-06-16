@@ -12,3 +12,8 @@ juguete_upload:
     path: /upload-image/{id}
     defaults: { _controller: "AppBundle:Juguete:upload", id:null }
     methods: POST
+
+juguete_list:
+    path: /list
+    defaults: { _controller: "AppBundle:Juguete:list" }
+    methods: GET

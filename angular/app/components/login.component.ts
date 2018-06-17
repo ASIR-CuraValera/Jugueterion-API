@@ -32,8 +32,8 @@ export class LoginComponent implements OnInit
       "getHash": false
     }
 
-    let ide = localStorage.getItem('identity');
-    let tk = localStorage.getItem('token');
+    let ide = this._loginService.getIdentity();
+    let tk = this._loginService.getToken();
 
     console.log(ide);
     console.log(tk);
@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit
             localStorage.setItem('identity', JSON.stringify(identity));
 
             this.user.getHash = true;
-            
+
             this._loginService.singup(this.user).subscribe(
               response => {
                 let token = response;

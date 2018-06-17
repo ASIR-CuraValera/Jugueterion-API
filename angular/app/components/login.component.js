@@ -25,8 +25,8 @@ var LoginComponent = (function () {
                 "password": "",
                 "getHash": false
             };
-        var ide = localStorage.getItem('identity');
-        var tk = localStorage.getItem('token');
+        var ide = this._loginService.getIdentity();
+        var tk = this._loginService.getToken();
         console.log(ide);
         console.log(tk);
     };

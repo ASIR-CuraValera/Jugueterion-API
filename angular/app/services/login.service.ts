@@ -7,6 +7,8 @@ import { Observable } from 'rxjs/Observable';
 export class LoginService
 {
   public url="http://localhost/iaw/jugueterion-fs/symfony/web/app_dev.php";
+  public identity;
+  public token;
 
   constructor(private _http: Http){}
 
@@ -18,5 +20,29 @@ export class LoginService
 
     return this._http.post(this.url+"/login", params, {headers: headers})
             .map(res => res.json());
+  }
+
+  getIdentity()
+  {
+    let identity = JSON.parse(localStorage.getItem('identity'));
+
+    if(identity != "undefined")
+      this.identity = identity;
+    else
+      this.identity = null;
+
+    return this.identity;
+  }
+
+  getToken()
+  {
+    let token = localStorage.getItem('token');
+
+    if(token != "undefined")
+      this.token = token;
+    else
+      this.token = null;
+
+    return this.token;
   }
 }

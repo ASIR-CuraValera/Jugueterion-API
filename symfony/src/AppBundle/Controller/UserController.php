@@ -113,9 +113,9 @@ class UserController extends Controller
                 $rol = 1; // WIP: Hacer tabla para roles, 0 = user, 1 = admin
 
                 $email = @$params->email;
-                $nick = @$params->nickname;
-                $nombre = preg_match('/^\p{L}*$/', @$params->nombre) ? @$params->nombre : null; // WIP: Usamos estos regex básicamente porque ctype_alpha no acepta acentos
-                $apellidos = preg_match('/^\p{L}*$/', @$params->apellidos) ? @$params->apellidos : null;
+                $nick = @$params->nick;
+                $nombre = @$params->nombre; //preg_match('/^\p{L}*$/', @$params->nombre) ? @$params->nombre : null; // WIP: Usamos estos regex básicamente porque ctype_alpha no acepta acentos
+                $apellidos = @$params->apellidos; //preg_match('/^\p{L}*$/', @$params->apellidos) ? @$params->apellidos : null;
                 $password = @$params->password;
 
                 $emailConstraint = new Email();
@@ -123,40 +123,39 @@ class UserController extends Controller
 
                 $validateMail = $this->get("validator")->validate($email, $emailConstraint);
 
-                if(isset($email) && count($validateMail) == 0 && isset($nick) && isset($nombre) && isset($apellidos))
-                {
-                    // Cifrar contraseña
-                    if(isset($password))
-                    {
-                        $pwd = JWT::encode($password, $jwt_auth->key, 'HS256'); //hash('hs256', $password);
-                        $user->setPassword($pwd);
-                    }
+                if(!isset($nombre) || !isset($apellidos))
+                    $data = array("status" => "error", "msg" => "Nombre o apellidos no validos!");
+                else {
+                    if (isset($email) && count($validateMail) == 0 && isset($nick) && isset($nombre) && isset($apellidos)) {
+                        // Cifrar contraseña
+                        if (isset($password)) {
+                            $pwd = JWT::encode($password, $jwt_auth->key, 'HS256'); //hash('hs256', $password);
+                            $user->setPassword($pwd);
+                        }
 
-                    $user->setCreadoEn($creadoEn);
-                    $user->setNick($nick);
-                    $user->setNombre($nombre);
-                    $user->setApellidos($apellidos);
-                    $user->setEmail($email);
-                    $user->setRol($rol);
-                    $user->setAvatar($avatar);
+                        $user->setCreadoEn($creadoEn);
+                        $user->setNick($nick);
+                        $user->setNombre($nombre);
+                        $user->setApellidos($apellidos);
+                        $user->setEmail($email);
+                        $user->setRol($rol);
+                        $user->setAvatar($avatar);
 
-                    $em = $this->getDoctrine()->getManager();
-                    $issue_user = $em->getRepository("BDBundle:Usuarios")->findBy(array("email" => $email));
+                        $em = $this->getDoctrine()->getManager();
+                        $issue_user = $em->getRepository("BDBundle:Usuarios")->findBy(array("email" => $email));
 
-                    if(count($issue_user) == 0 || $identity->email == $email)
-                    {
-                        $em->persist($user);
-                        $em->flush();
+                        if (count($issue_user) == 0 || $identity->email == $email) {
+                            $em->persist($user);
+                            $em->flush();
 
-                        $data["status"] = 'success';
-                        $data["code"] = 200;
-                        $data["msg"] = 'New user created!!';
-                    }
-                    else
-                        $data = array("status" => "error", "code" => 400, "msg" => "User not updated, duplicated!!");
+                            $data["status"] = 'success';
+                            $data["code"] = 200;
+                            $data["msg"] = 'New user created!!';
+                        } else
+                            $data = array("status" => "error", "code" => 400, "msg" => "User not updated, duplicated!!");
+                    } else
+                        $data = array("status" => "error", "code" => 400, "msg" => "User not updated (empty values): " . print_r($params, true));
                 }
-                else
-                    $data = array("status" => "error", "code" => 400, "msg" => "User not updated (empty values): ".print_r($params, true));
             }
             else
                 $data = array("status" => "error", "code" => 400, "msg" => "User not updated (JSON is null)");

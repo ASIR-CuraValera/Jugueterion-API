@@ -56,4 +56,14 @@ export class LoginService
     return this._http.post(this.url+"/user/new", params, {headers: headers})
             .map(res => res.json());
   }
+
+  updateUser(user_update)
+  {
+    let json = JSON.stringify(user_update);
+    let params = "json="+json+"&authorization="+this.getToken();
+    let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+
+    return this._http.post(this.url+"/user/edit", params, {headers: headers})
+            .map(res => res.json());
+  }
 }

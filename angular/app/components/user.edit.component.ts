@@ -6,16 +6,16 @@ import { ROUTER_DIRECTIVES, Router, ActivatedRoute } from "@angular/router";
 
 // Decorador component, indicamos en que etiqueta se va a cargar la plantilla
 @Component({
-    selector: 'register',
-    templateUrl: 'app/view/register.html',
+    selector: 'user-edit',
+    templateUrl: 'app/view/user.edit.html',
     directives: [ROUTER_DIRECTIVES],
     providers: [LoginService]
 })
 
 // Clase del componente donde irán los datos y funcionalidades
-export class RegisterComponent implements OnInit
+export class UserEditComponent implements OnInit
 {
-  public titulo: string = "Registro";
+  public titulo: string = "Actualizar mis datos";
   public user: User;
   public errorMessage;
   public status;
@@ -29,13 +29,19 @@ export class RegisterComponent implements OnInit
 
   ngOnInit()
   {
-    this.user = new User(1, 0, "usuario", "", "", "", "", null);
+    let identity = this._loginService.getIdentity();
+
+    //console.log(identity == null);
+
+    if(identity == null)
+      this._router.navigate(["/index"]);
+    else
+      this.user = new User(identity.sub, identity.rol, identity.nombre, identity.apellidos, identity.nick, identity.email, identity.password, null);
   }
 
-  onSubmit()
-  {
+  onSubmit() {
     console.log(this.user);
-    this._loginService.register(this.user).subscribe(
+    this._loginService.updateUser(this.user).subscribe(
       response =>
       {
         this.status = response.status;

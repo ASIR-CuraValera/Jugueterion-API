@@ -102,10 +102,11 @@ class UserController extends Controller
             ));
 
             $json = $request->get("json", null);
-            $params = json_decode($json);
 
             if($json != null)
             {
+                $params = json_decode($json);
+
                 $creadoEn = new \DateTime("now");
                 $avatar = "imgs/avatar.png"; // WIP: No puede ser nulo tampoco
                 $rol = 1; // WIP: Hacer tabla para roles, 0 = user, 1 = admin
@@ -173,7 +174,8 @@ class UserController extends Controller
         $hash = $request->get("authorization", null);
         $authCheck = $helpers->authCheck($hash);
 
-        if($authCheck) {
+        if($authCheck)
+        {
             $identity = $helpers->authCheck($hash, true);
 
             $em = $this->getDoctrine()->getManager();
@@ -204,9 +206,8 @@ class UserController extends Controller
                 $data = array("status" => "error", "msg" => "Archivo de avatar no valido!");
             }
         }
-        else {
+        else
             $data = array("status" => "error", "msg" => "Login no valido!");
-        }
 
         return $helpers->json($data);
     }

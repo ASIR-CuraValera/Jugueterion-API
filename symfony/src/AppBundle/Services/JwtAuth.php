@@ -37,13 +37,15 @@ class JwtAuth
                 "iat" => time(),
                 "exp" => time() + 7 * 24 * 3600);
 
+            // Esto deberia de optimizarse
+            $jwt = JWT::encode($token, $key, 'HS256');
             if($getHash != null)
-                return JWT::encode($token, $key, 'HS256');
+                return $jwt;
             else
-                return JWT::decode($getHash, $key, array('HS256'));
+                return JWT::decode($jwt, $key, array('HS256'));
         }
         else
-            return array("status" => "error", "data" => "NOT OK!");
+            return array("status" => "error", "data" => "El usuario no existe!");
     }
 
     public function checkToken($jwt, $getIdentity = false) {

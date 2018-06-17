@@ -131,25 +131,6 @@ class CommentController extends Controller
         else
             $data = array("status" => "error", "msg" => "No hay comentarios!");
 
-        /*$dql = "SELECT j FROM BDBundle:Juguetes j ORDER BY j.id DESC";
-        $query = $em->createQuery($dql);
-
-        $page = $request->query->getInt("page", 1);
-        $paginator = $this->get("knp_paginator");
-        $items_per_page = 6;
-
-        $pagination = $paginator->paginate($query, $page, $items_per_page);
-        $total_items_count = $pagination->getTotalItemCount();
-
-        $data = array(
-            "status" => "success",
-            "total_items_count" => $total_items_count,
-            "actual_page" => $page,
-            "items_per_page" => $items_per_page,
-            "total_pages" => ceil($total_items_count / $items_per_page),
-            "data" => $pagination
-        );*/
-
         return $helpers->json($data);
     }
 }

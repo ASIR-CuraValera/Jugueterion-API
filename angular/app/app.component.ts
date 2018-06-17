@@ -18,7 +18,7 @@ export class AppComponent
   public token;
 
   constructor(
-    private _loginService: LoginService;
+    private _loginService: LoginService
   ) {}
 
   ngOnInit()

@@ -74,12 +74,15 @@ class CommentController extends Controller
         return $helpers->json($data);
     }
 
+    // WIP: Por alguna razon deja borrar comentarios de todo el mundo
     public function deleteAction(Request $request, $id = null)
     {
         $helpers = $this->get("app.helpers");
 
         $hash = $request->get("authorization", null);
         $authCheck = $helpers->authCheck($hash);
+
+        $data = array();
 
         if($authCheck)
         {
@@ -93,14 +96,18 @@ class CommentController extends Controller
             if(is_object($comment) && isset($user_id))
             {
                 if(isset($user_id) && $user_id == $comment->getUsuario()->getId() ||
-                $user_id == $comment->getJuguete()->getUser()->getId())
+                $user_id == $comment->getJuguete()->getUsuario()->getId())
                 {
                     $em->remove($comment);
                     $em->flush();
 
                     $data = array("status" => "success", "msg" => "Comentario borrado!");
                 }
+                else
+                    $data = array("status" => "error", "msg" => "No estás autorizado a borrar este comentario!");
             }
+            else
+                $data = array("status" => "error", "msg" => "El comentario no existe!");
         }
         else
             $data = array("status" => "error", "msg" => "Login no valido!");

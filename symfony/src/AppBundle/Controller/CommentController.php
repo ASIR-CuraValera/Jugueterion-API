@@ -114,4 +114,42 @@ class CommentController extends Controller
 
         return $helpers->json($data);
     }
+
+    public function listAction(Request $request, $id = null)
+    {
+        $juguete_id = $id;
+        $helpers = $this->get("app.helpers");
+        $em = $this->getDoctrine()->getManager();
+
+        $juguete = $em->getRepository("BDBundle:Juguetes")->findOneBy(array("id" => $juguete_id));
+        $comentarios = $em->getRepository("BDBundle:Comentarios")->findBy(array("juguete" => $juguete), array('id' => 'DESC'));
+
+        if(count($comentarios) >= 1)
+        {
+            $data = array("status" => "success", "data" => $comentarios);
+        }
+        else
+            $data = array("status" => "error", "msg" => "No hay comentarios!");
+
+        /*$dql = "SELECT j FROM BDBundle:Juguetes j ORDER BY j.id DESC";
+        $query = $em->createQuery($dql);
+
+        $page = $request->query->getInt("page", 1);
+        $paginator = $this->get("knp_paginator");
+        $items_per_page = 6;
+
+        $pagination = $paginator->paginate($query, $page, $items_per_page);
+        $total_items_count = $pagination->getTotalItemCount();
+
+        $data = array(
+            "status" => "success",
+            "total_items_count" => $total_items_count,
+            "actual_page" => $page,
+            "items_per_page" => $items_per_page,
+            "total_pages" => ceil($total_items_count / $items_per_page),
+            "data" => $pagination
+        );*/
+
+        return $helpers->json($data);
+    }
 }

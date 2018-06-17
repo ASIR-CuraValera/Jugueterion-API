@@ -1,0 +1,506 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"tmp",
+				"tmpfolder"
+			],
+			[
+				"origi",
+				"originhome"
+			],
+			[
+				"cp",
+				"cp_var"
+			],
+			[
+				"read",
+				"readytocopy"
+			],
+			[
+				"opn",
+				"openDiscord"
+			],
+			[
+				"close",
+				"closeDiscord"
+			],
+			[
+				"open",
+				"openDiscord"
+			],
+			[
+				"get",
+				"getCookie"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"page",
+				"pagename"
+			],
+			[
+				"img",
+				"img_logo_server"
+			],
+			[
+				"c",
+				"cygdrive"
+			],
+			[
+				"total_",
+				"total_courses"
+			],
+			[
+				"pu",
+				"publish"
+			],
+			[
+				"que",
+				"question"
+			],
+			[
+				"ques",
+				"questions"
+			],
+			[
+				"json_",
+				"json_encode"
+			],
+			[
+				"tot",
+				"total"
+			],
+			[
+				"for",
+				"foreach\tforeach …"
+			],
+			[
+				"table",
+				"tablename"
+			],
+			[
+				"las",
+				"lasttable"
+			],
+			[
+				"con",
+				"content"
+			],
+			[
+				"preg",
+				"preg_match"
+			],
+			[
+				"str_rep",
+				"str_replace"
+			],
+			[
+				"Att",
+				"attached"
+			],
+			[
+				"txt",
+				"txtfile"
+			],
+			[
+				"line",
+				"linenum"
+			],
+			[
+				"Cho",
+				"ChooseLine"
+			],
+			[
+				"pr",
+				"project_path"
+			],
+			[
+				"m",
+				"MAIN_PATH"
+			],
+			[
+				"marg",
+				"margin-left"
+			],
+			[
+				"wi",
+				"width"
+			],
+			[
+				"inline",
+				"inline-block"
+			],
+			[
+				"Ma",
+				"MAIN_PATH"
+			],
+			[
+				"Compil",
+				"CompileOrder"
+			],
+			[
+				"Com",
+				"CompileOrder"
+			],
+			[
+				"Pro",
+				"ProjectPath"
+			],
+			[
+				"pau",
+				"Pause"
+			],
+			[
+				"pa",
+				"Pause"
+			],
+			[
+				"sta",
+				"stardockPath"
+			],
+			[
+				"Wr",
+				"WriteFileText"
+			],
+			[
+				"folde",
+				"folderIndex"
+			],
+			[
+				"instal",
+				"installPath"
+			],
+			[
+				"app",
+				"AppendEmptyLine"
+			],
+			[
+				"str",
+				"strValue"
+			],
+			[
+				"folder",
+				"folderSelected"
+			],
+			[
+				"PRO",
+				"ProjectPath"
+			],
+			[
+				"project",
+				"ProjectPath"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 104.0,
+		"last_filter": "instal",
+		"selected_items":
+		[
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"install package",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Install Package Control"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"view.encoding();",
+			"view.encoding()"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/xampp/htdocs/iaw/jugueterion-fs"
+	],
+	"file_history":
+	[
+		"/C/Users/Álvaro/Downloads/gtatools c#/GXTGUIModule.cs",
+		"/C/Users/Álvaro/Downloads/gtatools c#/GXTFormatHandler.cs",
+		"/C/Users/Álvaro/Downloads/gtatools c#/GXTTableModel.cs",
+		"/C/Users/Álvaro/Downloads/gtatools c#/GXTWidget.cs",
+		"/D/JUEGOS/KPS GTA San Andreas/text/american.txt",
+		"/D/JUEGOS/KPS GTA San Andreas/text/american.gxt",
+		"/D/JUEGOS/GTA Tests/parachute.ifp",
+		"/C/Users/Álvaro/AppData/Local/Microsoft/VisualStudio/15.0_eada51c5/Extensions/riyfdkd4.ww4/extension.vsixmanifest",
+		"/D/JUEGOS/KPS GTA San Andreas/audio/CONFIG/BankSlot.dat",
+		"/D/JUEGOS/KPS GTA San Andreas/audio/CONFIG/TrakLkup.dat",
+		"/D/JUEGOS/KPS GTA San Andreas/audio/CONFIG/StrmPaks.dat",
+		"/D/JUEGOS/KPS GTA San Andreas/audio/CONFIG/PakFiles.dat",
+		"/D/JUEGOS/KPS GTA San Andreas/audio/CONFIG/EventVol.dat",
+		"/D/JUEGOS/KPS GTA San Andreas/audio/CONFIG/BankLkup.dat",
+		"/C/Users/Álvaro/Downloads/radio-sa c#/src/config.cs",
+		"/C/Users/Álvaro/Downloads/radio-sa c#/src/extract.cs",
+		"/D/JUEGOS/KPS GTA San Andreas/data/script/main.scm",
+		"/D/JUEGOS/KPS GTA San Andreas/data/maps/generic/vegepart.ide",
+		"/D/UNITY/Unity Projects/SanAndreasUnity/Assets/StreamingAssets/profiling.txt.raw",
+		"/D/UNITY/Unity Projects/SanAndreasUnity/ProjectSettings/TagManager.asset",
+		"/D/UNITY/Unity Projects/SanAndreasUnity/Assets/StreamingAssets/debug_1526857476.49509.html",
+		"/D/XORSTUDIOS/UNET-Framework/Solution/UNET.Core/Xml/Tools/XmlUtil_XmlBeautifier.vb",
+		"/D/UNITY/Unity Projects/SanAndreasUnity/Build/Build_Data/StreamingAssets/debug_1526922691.85564.log",
+		"/D/UNITY/Unity Projects/SanAndreasUnity/Packages/ILRepack.Lib.MSBuild.Task.2.0.15.4/build/ILRepack.Lib.MSBuild.Task.targets",
+		"/D/UNITY/Unity Projects/SanAndreasUnity/Assets/StreamingAssets/debug_1526857338.55207.html",
+		"/D/UNITY/Unity Projects/SanAndreasUnity/Assets/StreamingAssets/debug_1526857250.03482.html",
+		"/D/UNITY/Unity Projects/SanAndreasUnity/Assets/StreamingAssets/debug_1526856799.32491.html",
+		"/D/UNITY/Unity Projects/SanAndreasUnity/Assets/Scripts/EasyConsole/Prefabs/Console.prefab",
+		"/D/UNITY/Unity Projects/SanAndreasUnity/ProjectSettings/QualitySettings.asset",
+		"/D/UNITY/Unity Projects/SanAndreasUnity/ProjectSettings/GraphicsSettings.asset",
+		"/D/UNITY/Unity Projects/SanAndreasUnity/Assets/Scenes/Default.unity",
+		"/D/UNITY/Unity Projects/SanAndreasUnity/ProjectSettings-old/GraphicsSettings.asset",
+		"/C/xampp/htdocs/z3nth10n-PHP/keys/public.key",
+		"/C/xampp/htdocs/z3nth10n-PHP/keys/private.key",
+		"/D/UNITY/Unity Projects/SanAndreasUnity/diffs/Result.html",
+		"/D/UNITY/Unity Projects/SanAndreasUnity/ProjectSettings-old/TagManager.asset",
+		"/C/Users/Álvaro/Downloads/test.html",
+		"/C/Users/Álvaro/source/repos/ZeroZine/edicion1/zenth10n/1-gangas/VPS con dominio de gestión por 18€ al año.md",
+		"/C/Users/Álvaro/source/repos/ZeroZine/edicion1/zenth10n/1-gangas/VPS con dominio de gestión por 15$ al año.md",
+		"/C/Users/Álvaro/source/repos/ZeroZine/edicion1/zenth10n/2-captchas/2-Integrando una captcha a WinForms o a una Consola.md",
+		"/C/Users/Álvaro/source/repos/ZeroZine/edicion1/zenth10n/2-captchas/1-Usando nuestro propio y antiguo sistema de captchas.md",
+		"/C/Users/Álvaro/AppData/Local/Temp/fz3temp-2/info.php",
+		"/C/Users/Álvaro/Downloads/127_0_0_1.sql",
+		"/C/Users/Álvaro/source/repos/ZeroZine/edicion1/zenth10n/1-gangas/Tener nuestro propia API bajo HTTPS gratuitamente.md",
+		"/C/Users/Álvaro/source/repos/ZeroZine/edicion1/zenth10n/1-gangas/VPS por 300€ al año para tener tus propios servidores de juegos.md",
+		"/C/Users/Álvaro/source/repos/ZeroZine/edicion1/zenth10n/1-https gratuito/Tener nuestro propia API bajo HTTPS gratuitamente.md",
+		"/C/Users/Álvaro/AppData/Local/Temp/fz3temp-2/autoload.php",
+		"/D/VISUAL STUDIO/Visual Studio Projects/jwt/git-hacker.sh",
+		"/C/Users/Álvaro/AppData/Local/Temp/fz3temp-2/Settings.php",
+		"/C/Users/Álvaro/AppData/Local/Temp/fz3temp-2/Settings.php.bak",
+		"/D/VISUAL STUDIO/Visual Studio Projects/jwt/bindings.sh",
+		"/D/VISUAL STUDIO/Visual Studio Projects/z3nth10n Launcher/bindings.sh",
+		"/D/VISUAL STUDIO/Visual Studio Projects/z3nth10n Launcher/.gitignore",
+		"/C/xampp/htdocs/z3nth10n-PHP/private.key",
+		"/D/VISUAL STUDIO/Visual Studio Projects/jwt/githackignore",
+		"/D/VISUAL STUDIO/Visual Studio Projects/jwt/tmp.TrauTub4Zz/.gitignore",
+		"/D/VISUAL STUDIO/Visual Studio Projects/jwt/.gitignore",
+		"/D/VISUAL STUDIO/Visual Studio Projects/jwt/tmp.axHdvAJtEN/.gitignore",
+		"/D/VISUAL STUDIO/Visual Studio Projects/jwt/tmp.axHdvAJtEN/githackignore",
+		"/D/VISUAL STUDIO/Visual Studio Projects/jwt/githack",
+		"/D/VISUAL STUDIO/Visual Studio Projects/jwt/tempname",
+		"/D/VISUAL STUDIO/Visual Studio Projects/jwt/tmp.WTSu5HpC5k/.gitignore",
+		"/C/Users/Álvaro/source/repos/trytohackus/whatisthis/git-hacker.sh",
+		"/D/VISUAL STUDIO/Visual Studio Projects/jwt/packages/ILRepack.Lib.MSBuild.Task.2.0.15.4/build/ILRepack.Lib.MSBuild.Task.targets",
+		"/D/VISUAL STUDIO/Visual Studio Projects/z3nth10n Launcher/packages/ILRepack.Lib.MSBuild.Task.2.0.15.4/build/ILRepack.Lib.MSBuild.Task.targets",
+		"/D/VISUAL STUDIO/Visual Studio Projects/z3nth10n Launcher/z3nth10n Launcher/z3nth10n Launcher.csproj",
+		"/C/Users/Álvaro/Downloads/json",
+		"/C/Users/Álvaro/Downloads/json2",
+		"/D/VISUAL STUDIO/Visual Studio Projects/jwt/packages/MSBuild.ConfuserEx.1.0.1.0/build/MSBuild.ConfuserEx.targets",
+		"/C/Program Files/JetBrains/PhpStorm 2018.1.2/bin/phpstorm64.exe.vmoptions",
+		"/C/Program Files/JetBrains/PhpStorm 2018.1.2/bin/phpstorm.exe.vmoptions",
+		"/C/Users/Álvaro/AppData/Local/Temp/fz3temp-2/index.html",
+		"/D/VISUAL STUDIO/Visual Studio Projects/jwt/jwt/jwt_api.csproj",
+		"/C/xampp/htdocs/z3nth10n-PHP/logo.php",
+		"/C/Users/LVARO~1/AppData/Local/Temp/Rar$DRa0.470/FileDownloader/FileDownloader/Window1.xaml.cs",
+		"/C/Users/LVARO~1/AppData/Local/Temp/Rar$DRa0.436/FileDownloader/FileDownloader/DownloaderDemo.xaml",
+		"/D/VISUAL STUDIO/Visual Studio Projects/z3nth10n Launcher/LauncherAPI/LauncherAPI.csproj",
+		"/C/Users/LVARO~1/AppData/Local/Temp/Rar$DRa0.789/FileDownloader/FileDownloader/DownloaderDemo.xaml.cs",
+		"/C/Users/LVARO~1/AppData/Local/Temp/Rar$DRa0.436/FileDownloader/FileDownloader/Window1.xaml",
+		"/C/Users/LVARO~1/AppData/Local/Temp/Rar$DRa0.436/FileDownloader/FileDownloader/App.xaml",
+		"/C/Users/LVARO~1/AppData/Local/Temp/Rar$DRa0.470/FileDownloader/FileDownloader/App.xaml.cs",
+		"/D/VISUAL STUDIO/Visual Studio Projects/z3nth10n Launcher/jinput/libraries/tv/twitch/twitch/5.16/index.html.tmp",
+		"/D/VISUAL STUDIO/Visual Studio Projects/z3nth10n Launcher/jinput/comando wget.md",
+		"/D/JUEGOS/Minecraft/Minecraft Pirata/logs/log4jFiles/tlaucnher_data.log",
+		"/D/JUEGOS/Minecraft/Technic/modpacks/vanilla/logs/latest.log",
+		"/D/JUEGOS/Minecraft/Technic/modpacks/vanilla/loading-log.log",
+		"/C/Users/Álvaro/Dropbox/Car Playlist/Rechuli Metal.txt",
+		"/C/Users/Álvaro/Dropbox/Car Playlist/B & D Metal & CIA YouTube.txt",
+		"/C/Users/Álvaro/Dropbox/Car Playlist/B & D Metal & CIA.txt",
+		"/C/Users/Álvaro/Documents/Logger.log",
+		"/D/VISUAL STUDIO/Visual Studio Projects/z3nth10n Launcher/z3nth10n-PHP/logo.php",
+		"/C/xampp/htdocs/z3nth10n/logo.php",
+		"/D/VISUAL STUDIO/Visual Studio Projects/z3nth10n Launcher/packages/ILRepack.MSBuild.Task.1.0.9/build/ILRepack.MSBuild.Task.targets",
+		"/C/Users/Álvaro/Downloads/teamdev.licenses",
+		"/C/Users/Álvaro/Dropbox/Car Playlist/Ska & More YouTube.txt",
+		"/C/Users/Álvaro/Dropbox/Car Playlist/Rechuli Metal YouTube.txt",
+		"/C/Users/Álvaro/Dropbox/Car Playlist/Rock Clásico YouTube.txt",
+		"/C/Users/Álvaro/Dropbox/Car Playlist/Rock Clásico.txt",
+		"/C/Users/Álvaro/Dropbox/Car Playlist/Thrash Metal & CIA.txt",
+		"/C/Users/Álvaro/Dropbox/Car Playlist/Thrash Metal & CIA YouTube.txt",
+		"/C/Users/Álvaro/Dropbox/Car Playlist/Ska & More.txt",
+		"/C/Users/Álvaro/Dropbox/Car Playlist/Clasicos en general YouTube.txt",
+		"/C/Users/Álvaro/Dropbox/Car Playlist/Clasicos en general.txt",
+		"/C/Users/Álvaro/Dropbox/Car Playlist/De Barrio YouTube.txt",
+		"/C/Users/Álvaro/Dropbox/Car Playlist/De Barrio.txt",
+		"/C/Users/Álvaro/Dropbox/Car Playlist/Fav con guitarra YouTube.txt",
+		"/C/Users/Álvaro/Dropbox/Car Playlist/Fav con Guitarra.txt",
+		"/C/Users/Álvaro/Dropbox/Car Playlist/Pop Español.txt",
+		"/C/Users/Álvaro/Dropbox/Car Playlist/Pop Español YouTube.txt",
+		"/C/Users/Álvaro/Dropbox/Car Playlist/Rap YouTube.txt",
+		"/C/Users/Álvaro/Dropbox/Car Playlist/Rap.txt",
+		"/C/Users/Álvaro/Dropbox/ginesito.txt",
+		"/E/XemanaXunga/ASO/ORDENES DE ADMINISTRACION.txt",
+		"/E/XemanaXunga/ASO/eje1.bat",
+		"/C/Users/Álvaro/Downloads/test (1).sql",
+		"/C/Users/Álvaro/Downloads/WhatsApp Chat con Ana Rosa López Rodríguez (2).txt",
+		"/C/Users/Álvaro/Downloads/WhatsApp Chat con Ana Rosa López Rodríguez.txt",
+		"/C/Users/Álvaro/Downloads/WhatsApp Chat con Ana Rosa López Rodríguez (1).txt",
+		"/D/UNITY/Unity Multiplayer/UNET/UnityForumsMultiplayer/.gitignore",
+		"/D/VISUAL STUDIO/Visual Studio Projects/GenericProtocol/GenericProtocol.sln",
+		"/D/VISUAL STUDIO/Visual Studio Projects/GenericProtocol/GenericProtocol-Core/GenericProtocol-Core.csproj",
+		"/D/VISUAL STUDIO/Visual Studio Projects/csharpsockets/consoleserver/bin/Debug/serverAppend.txt",
+		"/E/Xisquete/Pasos SRI Fran 2k18.txt",
+		"/D/VISUAL STUDIO/Visual Studio Projects/csharpsockets/lorem ipsum.txt",
+		"/C/Users/Álvaro/Downloads/WhatsApp Chat con Miguel.txt",
+		"/D/VISUAL STUDIO/Visual Studio Projects/MouseController/MouseController/frmMain.cs",
+		"/D/VISUAL STUDIO/Visual Studio Projects/MouseController-hash/MouseController/frmMain.cs",
+		"/C/Users/Álvaro/Downloads/canciones spotify html.html"
+	],
+	"find":
+	{
+		"height": 27.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "jugueterion-fs.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 225.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

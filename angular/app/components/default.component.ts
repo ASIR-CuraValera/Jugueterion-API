@@ -12,7 +12,7 @@ import {LoginService} from '../services/login.service'
 })
 
 // Clase del componente donde irán los datos y funcionalidades
-export class DefaultComponent
+export class DefaultComponent //implements OnInit
 {
   public titulo = "Portada";
   public identity;

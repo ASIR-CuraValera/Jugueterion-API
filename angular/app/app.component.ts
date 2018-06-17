@@ -12,7 +12,7 @@ import {LoginService} from './services/login.service'
 })
 
 // Clase del componente donde irán los datos y funcionalidades
-export class AppComponent
+export class AppComponent //implements OnInit
 {
   public identity;
   public token;

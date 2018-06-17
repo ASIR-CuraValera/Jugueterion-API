@@ -13,15 +13,19 @@ var core_1 = require('@angular/core');
 var router_1 = require("@angular/router");
 var login_service_1 = require('../services/login.service');
 // Decorador component, indicamos en que etiqueta se va a cargar la plantilla
-var DefaultComponent = (function () {
-    function DefaultComponent(_loginService) {
+var DefaultComponent //implements OnInit
+ = (function () {
+    function DefaultComponent //implements OnInit
+        (_loginService) {
         this._loginService = _loginService;
         this.titulo = "Portada";
     }
-    DefaultComponent.prototype.ngOnInit = function () {
+    DefaultComponent //implements OnInit
+    .prototype.ngOnInit = function () {
         this.identity = this._loginService.getIdentity();
     };
-    DefaultComponent = __decorate([
+    DefaultComponent //implements OnInit
+     = __decorate([
         core_1.Component({
             selector: 'default',
             templateUrl: 'app/view/default.html',
@@ -29,8 +33,12 @@ var DefaultComponent = (function () {
             providers: [login_service_1.LoginService]
         }), 
         __metadata('design:paramtypes', [login_service_1.LoginService])
-    ], DefaultComponent);
-    return DefaultComponent;
+    ], DefaultComponent //implements OnInit
+    );
+    return DefaultComponent //implements OnInit
+    ;
 }());
-exports.DefaultComponent = DefaultComponent;
+exports.DefaultComponent //implements OnInit
+ = DefaultComponent //implements OnInit
+;
 //# sourceMappingURL=default.component.js.map

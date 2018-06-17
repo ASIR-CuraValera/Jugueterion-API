@@ -12,6 +12,7 @@ export class LoginService
 
   constructor(private _http: Http){}
 
+  // Este nombre deberia llamarse singin
   singup(user_logged)
   {
     let json = JSON.stringify(user_logged);
@@ -44,5 +45,15 @@ export class LoginService
       this.token = null;
 
     return this.token;
+  }
+
+  register(user_register)
+  {
+    let json = JSON.stringify(user_register);
+    let params = "json="+json;
+    let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+
+    return this._http.post(this.url+"/user/new", params, {headers: headers})
+            .map(res => res.json());
   }
 }

@@ -16,6 +16,7 @@ var LoginService = (function () {
         this._http = _http;
         this.url = "http://localhost/iaw/jugueterion-fs/symfony/web/app_dev.php";
     }
+    // Este nombre deberia llamarse singin
     LoginService.prototype.singup = function (user_logged) {
         var json = JSON.stringify(user_logged);
         var params = "json=" + json;
@@ -38,6 +39,13 @@ var LoginService = (function () {
         else
             this.token = null;
         return this.token;
+    };
+    LoginService.prototype.register = function (user_register) {
+        var json = JSON.stringify(user_register);
+        var params = "json=" + json;
+        var headers = new http_1.Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        return this._http.post(this.url + "/user/new", params, { headers: headers })
+            .map(function (res) { return res.json(); });
     };
     LoginService = __decorate([
         core_1.Injectable(), 

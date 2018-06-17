@@ -10,16 +10,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 // Importar el núcleo de Angular
 var core_1 = require('@angular/core');
+var router_1 = require("@angular/router");
+var login_service_1 = require('../services/login.service');
 // Decorador component, indicamos en que etiqueta se va a cargar la plantilla
 var DefaultComponent = (function () {
-    function DefaultComponent() {
+    function DefaultComponent(_loginService) {
+        this._loginService = _loginService;
+        this.titulo = "Portada";
     }
+    DefaultComponent.prototype.ngOnInit = function () {
+        this.identity = this._loginService.getIdentity();
+    };
     DefaultComponent = __decorate([
         core_1.Component({
             selector: 'default',
-            template: '<h1>Componente por defecto</h1>'
+            templateUrl: 'app/view/default.html',
+            directives: [router_1.ROUTER_DIRECTIVES],
+            providers: [login_service_1.LoginService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [login_service_1.LoginService])
     ], DefaultComponent);
     return DefaultComponent;
 }());

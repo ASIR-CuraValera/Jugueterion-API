@@ -9,3 +9,7 @@ app_user:
 app_juguete:
     resource: "@AppBundle/Resources/config/routing/juguete.yml"
     prefix: /juguete
+
+app_comment:
+    resource: "@AppBundle/Resources/config/routing/comment.yml"
+    prefix: /comment

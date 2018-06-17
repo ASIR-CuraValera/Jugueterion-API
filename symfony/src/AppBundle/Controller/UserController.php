@@ -219,7 +219,7 @@ class UserController extends Controller
         $user_id = $id;
         $user = $em->getRepository("BDBundle:Usuarios")->findOneBy(array("id" => $user_id));
 
-        $dql = "SELECT j FROM BDBundle:Juguetes j WHERE j.usuario_id=$user_id";
+        $dql = "SELECT j FROM BDBundle:Juguetes j JOIN BDBundle:Usuarios u WHERE u.id=$user_id";
         $query = $em->createQuery($dql);
 
         $page = $request->query->getInt("page", 1);

@@ -50,11 +50,14 @@ export class LoginComponent implements OnInit
       "getHash": false
     }
 
-    let ide = this._loginService.getIdentity();
-    let tk = this._loginService.getToken();
+    let identity = this._loginService.getIdentity();
+    /*let tk = this._loginService.getToken();
 
     console.log(ide);
-    console.log(tk);
+    console.log(tk);*/
+
+    if(identity != null && identity.sub != null)
+      this._router.navigate(["/index"]);
   }
 
   onSubmit()

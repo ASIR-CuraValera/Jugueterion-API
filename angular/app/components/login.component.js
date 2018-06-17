@@ -40,10 +40,13 @@ var LoginComponent = (function () {
                 "password": "",
                 "getHash": false
             };
-        var ide = this._loginService.getIdentity();
-        var tk = this._loginService.getToken();
+        var identity = this._loginService.getIdentity();
+        /*let tk = this._loginService.getToken();
+    
         console.log(ide);
-        console.log(tk);
+        console.log(tk);*/
+        if (identity != null && identity.sub != null)
+            this._router.navigate(["/index"]);
     };
     LoginComponent.prototype.onSubmit = function () {
         var _this = this;

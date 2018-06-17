@@ -10,8 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 // Importar el núcleo de Angular
 var core_1 = require('@angular/core');
-// Decorador component, indicamos en que etiqueta se va a cargar la 
-plantilla;
+// Decorador component, indicamos en que etiqueta se va a cargar la plantilla
 var AppComponent = (function () {
     function AppComponent() {
     }

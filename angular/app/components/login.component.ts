@@ -8,8 +8,20 @@ import {Component} from '@angular/core';
 })
 
 // Clase del componente donde irán los datos y funcionalidades
-export class LoginComponent
+export class LoginComponent implements OnInit
 {
   public titulo: string = "Identificate";
+  public user;
 
+  ngOnInit() {
+    this.user = {
+      "email": "",
+      "password": "",
+      "getHash": false
+    }
+  }
+
+  onSubmit() {
+    console.log(this.user);
+  }
 }

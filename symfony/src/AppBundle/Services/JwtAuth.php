@@ -39,6 +39,7 @@ class JwtAuth
                 "apellidos" => $user->getApellidos(),
                 "nick" => $user->getNick(),
                 "password" => $user->getPassword(),
+                "avatar" => $user->getAvatar(),
                 "iat" => time(),
                 "exp" => time() + 7 * 24 * 3600);
 

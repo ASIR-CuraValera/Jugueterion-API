@@ -1,6 +1,7 @@
 // Importar el núcleo de Angular
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from '../services/login.service';
+import {UploadService} from '../services/upload.service';
 import {User} from '../model/user';
 import { ROUTER_DIRECTIVES, Router, ActivatedRoute } from "@angular/router";
 
@@ -9,7 +10,7 @@ import { ROUTER_DIRECTIVES, Router, ActivatedRoute } from "@angular/router";
     selector: 'user-edit',
     templateUrl: 'app/view/user.edit.html',
     directives: [ROUTER_DIRECTIVES],
-    providers: [LoginService]
+    providers: [LoginService, UploadService]
 })
 
 // Clase del componente donde irán los datos y funcionalidades
@@ -25,6 +26,7 @@ export class UserEditComponent implements OnInit
 
   constructor(
     private _loginService: LoginService,
+    private _uploadService: UploadService,
     private _route: ActivatedRoute,
     private _router: Router
   ) {}
@@ -80,6 +82,26 @@ export class UserEditComponent implements OnInit
         if(this.errorMessage != null) {
           alert("Error en la petición!");
         }
+      }
+    );
+  }
+
+  public filesToUpload: Array<File>;
+  public resultUpload;
+
+  fileChangeEvent(fileInput: any)
+  {
+    this.filesToUpload = <Array<File>>fileInput.target.files;
+
+    let token = this._loginService.getToken();
+    let url = "http://localhost/iaw/jugueterion-fs/symfony/web/app_dev.php/user/upload-image-user";
+    this._uploadService.makeFileRequest(token, url, ['image'], this.filesToUpload).then(
+      (result) => {
+        this.resultUpload = result;
+        console.log(this.resultUpload);
+      },
+      (error) => {
+        console.log(error);
       }
     );
   }

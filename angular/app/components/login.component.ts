@@ -1,5 +1,5 @@
 // Importar el núcleo de Angular
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LoginService} from '../services/login.service';
 import { ROUTER_DIRECTIVES, Router, ActivatedRoute } from "@angular/router";
 

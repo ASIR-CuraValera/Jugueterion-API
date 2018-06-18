@@ -83,6 +83,7 @@ class UserController extends Controller
         return $helpers->json($data);
     }
 
+    // Por alguna razon al traer los datos del usuario se vuelven mezclados
     public function editAction(Request $request)
     {
         $helpers = $this->get("app.helpers");
@@ -241,7 +242,7 @@ class UserController extends Controller
                 "data" => $pagination
             );
         }
-        else$data = array("status" => "error", "msg" => "El usuario no existe!");
+        else$data = array("status" => "error", "msg" => "El usuario no existe o las credenciales son incorrectas!");
 
         return $helpers->json($data);
     }

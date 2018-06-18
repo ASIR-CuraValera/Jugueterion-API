@@ -23,20 +23,30 @@ var UserEditComponent = (function () {
     }
     UserEditComponent.prototype.ngOnInit = function () {
         var identity = this._loginService.getIdentity();
+        this.identity = identity;
         //console.log(identity == null);
         if (identity == null)
             this._router.navigate(["/index"]);
         else
-            this.user = new user_1.User(identity.sub, identity.rol, identity.nombre, identity.apellidos, identity.nick, identity.email, identity.password, null);
+            this.user = new user_1.User(identity.sub, identity.rol, identity.nick, identity.nombre, identity.apellidos, identity.email, identity.password, null);
     };
     UserEditComponent.prototype.onSubmit = function () {
         var _this = this;
         console.log(this.user);
+        this.newPwd = this.user.password;
+        if (this.user.password == this.identity.password) {
+            this.user.password = null;
+        }
         this._loginService.updateUser(this.user).subscribe(function (response) {
             _this.status = response.status;
             if (_this.status != "success") {
                 _this.status = "error";
                 _this.data = response.msg;
+            }
+            else {
+                if (_this.newPwd == _this.identity.password)
+                    _this.user.password = _this.identity.password;
+                localStorage.setItem('identity', JSON.stringify(_this.user));
             }
             //console.log(response);
         }, function (error) {

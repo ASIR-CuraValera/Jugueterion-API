@@ -29,7 +29,7 @@ var UploadService = (function () {
                     if (xhr.status == 200)
                         resolve(JSON.parse(xhr.response));
                     else
-                        reject(xhr.response);
+                        this.reject(xhr.response);
                 }
             };
             xhr.upload.addEventListener("progress", function (event) {
@@ -61,6 +61,9 @@ var UploadService = (function () {
             xhr.open("POST", url, true);
             xhr.send(formData);
         });
+    };
+    UploadService.prototype.reject = function (obj) {
+        console.log(obj);
     };
     UploadService = __decorate([
         core_1.Injectable(), 

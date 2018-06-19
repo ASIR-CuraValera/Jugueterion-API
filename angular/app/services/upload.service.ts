@@ -30,7 +30,7 @@ export class UploadService
           if(xhr.status == 200)
             resolve(JSON.parse(xhr.response));
           else
-            reject(xhr.response);
+            this.reject(xhr.response);
         }
       }
 
@@ -73,5 +73,10 @@ export class UploadService
       xhr.open("POST", url, true);
       xhr.send(formData);
     });
+  }
+
+  reject(obj)
+  {
+    console.log(obj);
   }
 }

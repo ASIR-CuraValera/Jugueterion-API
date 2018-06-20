@@ -21,6 +21,13 @@ body {
   width: 65px;
 }
 
+.loader {
+  margin-bottom: 30px;
+}
+
+.pointer {
+  cursor: pointer;
+}
 
 /* ULTIMOS JUGUETES */
 

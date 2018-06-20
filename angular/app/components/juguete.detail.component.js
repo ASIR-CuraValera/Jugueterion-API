@@ -14,6 +14,7 @@ var login_service_1 = require('../services/login.service');
 var juguete_service_1 = require('../services/juguete.service');
 var fabricantes_service_1 = require('../services/fabricantes.service');
 var generate_date_pipe_1 = require('../pipes/generate.date.pipe');
+var comments_component_1 = require('./comments.component');
 var JugueteDetailComponent = (function () {
     function JugueteDetailComponent(_loginService, _jugueteService, _fabricantesService, _route, _router) {
         this._loginService = _loginService;
@@ -25,6 +26,7 @@ var JugueteDetailComponent = (function () {
     }
     JugueteDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.identity = this._loginService.getIdentity();
         this._route.params.subscribe(function (params) {
             _this.loading = 'show';
             var id = +params["id"];
@@ -59,7 +61,7 @@ var JugueteDetailComponent = (function () {
         core_1.Component({
             selector: "video-detail",
             templateUrl: "app/view/juguete.detail.html",
-            directives: [router_1.ROUTER_DIRECTIVES],
+            directives: [router_1.ROUTER_DIRECTIVES, comments_component_1.CommentsComponent],
             providers: [login_service_1.LoginService, juguete_service_1.JugueteService, fabricantes_service_1.FabricantesService],
             pipes: [generate_date_pipe_1.GenerateDatePipe]
         }), 

@@ -18,7 +18,7 @@ export class JugueteNewComponent implements OnInit
 {
   public titulo: string = "Crear un nuevo juguete";
   public juguete: Juguete;
-  public faricantes;
+  public fabricantes;
   public status;
   public errorMessage;
   public uploadedImage;

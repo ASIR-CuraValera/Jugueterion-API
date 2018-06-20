@@ -6,11 +6,12 @@ import {JugueteService} from '../services/juguete.service';
 import {FabricantesService} from '../services/fabricantes.service'
 import {User} from '../model/user';
 import {GenerateDatePipe} from '../pipes/generate.date.pipe';
+import {CommentsComponent} from './comments.component';
 
 @Component({
   selector: "video-detail",
   templateUrl: "app/view/juguete.detail.html",
-  directives: [ROUTER_DIRECTIVES],
+  directives: [ROUTER_DIRECTIVES, CommentsComponent],
   providers: [LoginService, JugueteService, FabricantesService],
   pipes: [GenerateDatePipe]
 })
@@ -23,6 +24,7 @@ export class JugueteDetailComponent implements OnInit
   public loading = 'show';
   public lastJuguetes;
   public statusLastJuguetes;
+  public identity;
 
   constructor(
     private _loginService: LoginService,
@@ -34,6 +36,7 @@ export class JugueteDetailComponent implements OnInit
 
   ngOnInit()
   {
+    this.identity = this._loginService.getIdentity();
     this._route.params.subscribe(
       params => {
         this.loading = 'show';

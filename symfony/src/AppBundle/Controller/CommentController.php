@@ -36,7 +36,7 @@ class CommentController extends Controller
                 $creadoEn = new \DateTime('now');
                 $user_id = @$identity->sub;
                 $juguete_id = @$params->juguete_id;
-                $texto = @$params->texto;
+                $texto = @$params->body;
 
                 if(isset($juguete_id) && isset($user_id) && isset($texto))
                 {
@@ -124,10 +124,10 @@ class CommentController extends Controller
         $juguete = $em->getRepository("BDBundle:Juguetes")->findOneBy(array("id" => $juguete_id));
         $comentarios = $em->getRepository("BDBundle:Comentarios")->findBy(array("juguete" => $juguete), array('id' => 'DESC'));
 
+        $data = array();
+
         if(count($comentarios) >= 1)
-        {
             $data = array("status" => "success", "data" => $comentarios);
-        }
         else
             $data = array("status" => "error", "msg" => "No hay comentarios!");
 

@@ -9,7 +9,7 @@
 
   <div class="col-md-8">
     <div class="juguete-detail-thumb">
-      <img src="http://localhost/iaw/jugueterion-fs/symfony/web/uploads/juguete/{{juguete.imagen}}" onError="this.src = 'http://localhost/iaw/jugueterion-fs/symfony/web/uploads/juguete/default.png'" alt="Imagen del juguete" />  
+      <img src="http://localhost/iaw/jugueterion-fs/symfony/web/uploads/juguete/{{juguete.imagen}}" onError="this.src = 'http://localhost/iaw/jugueterion-fs/symfony/web/uploads/juguete/default.png'" alt="Imagen del juguete" />
     </div>
 
     <div class="panel panel-default juguete-data">
@@ -22,6 +22,8 @@
         {{juguete.descripcion}}
       </div>
     </div>
+    <!--- COMPONENTE DE COMENTARIOS -->
+    <comments *ngIf="identity"></comments>
   </div>
 
   <div class="col-md-4">

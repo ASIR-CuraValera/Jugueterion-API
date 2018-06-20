@@ -24,6 +24,7 @@ var JugueteNewComponent = (function () {
         this._route = _route;
         this._router = _router;
         this.titulo = "Crear un nuevo juguete";
+        this.uploadedImage = false;
     }
     JugueteNewComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -61,6 +62,19 @@ var JugueteNewComponent = (function () {
                 console.log(_this.errorMessage._body);
                 alert("Error en la petición!");
             }
+        });
+    };
+    JugueteNewComponent.prototype.fileChangeEvent = function (fileInput) {
+        var _this = this;
+        this.filesToUpload = fileInput.target.files;
+        var token = this._loginService.getToken();
+        var url = "http://localhost/iaw/jugueterion-fs/symfony/web/app_dev.php/juguete/upload-image/" + this.juguete.id;
+        this._uploadService.makeFileRequest(token, url, ['image'], this.filesToUpload).then(function (result) {
+            _this.resultUpload = result;
+            _this.juguete.imagen = _this.resultUpload.filename;
+            console.log(_this.juguete);
+        }, function (error) {
+            console.log(error);
         });
     };
     JugueteNewComponent = __decorate([

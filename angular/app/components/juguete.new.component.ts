@@ -21,6 +21,7 @@ export class JugueteNewComponent implements OnInit
   public faricantes;
   public status;
   public errorMessage;
+  public uploadedImage;
 
   constructor(
     private _loginService: LoginService,
@@ -29,7 +30,9 @@ export class JugueteNewComponent implements OnInit
     private _fabricantesService: FabricantesService,
     private _route: ActivatedRoute,
     private _router: Router
-  ) {}
+  ) {
+    this.uploadedImage = false;
+  }
 
   ngOnInit()
   {
@@ -82,5 +85,26 @@ export class JugueteNewComponent implements OnInit
           }
         }
       );
+  }
+
+  public filesToUpload: Array<File>;
+  public resultUpload;
+
+  fileChangeEvent(fileInput: any)
+  {
+    this.filesToUpload = <Array<File>>fileInput.target.files;
+
+    let token = this._loginService.getToken();
+    let url = "http://localhost/iaw/jugueterion-fs/symfony/web/app_dev.php/juguete/upload-image/"+this.juguete.id;
+    this._uploadService.makeFileRequest(token, url, ['image'], this.filesToUpload).then(
+      (result) => {
+        this.resultUpload = result;
+        this.juguete.imagen = this.resultUpload.filename;
+        console.log(this.juguete);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }

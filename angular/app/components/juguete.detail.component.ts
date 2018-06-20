@@ -5,12 +5,14 @@ import {LoginService} from '../services/login.service';
 import {JugueteService} from '../services/juguete.service';
 import {FabricantesService} from '../services/fabricantes.service'
 import {User} from '../model/user';
+import {GenerateDatePipe} from '../pipes/generate.date.pipe';
 
 @Component({
   selector: "video-detail",
   templateUrl: "app/view/juguete.detail.html",
   directives: [ROUTER_DIRECTIVES],
-  providers: [LoginService, JugueteService, FabricantesService]
+  providers: [LoginService, JugueteService, FabricantesService],
+  pipes: [GenerateDatePipe]
 })
 
 export class JugueteDetailComponent implements OnInit

@@ -13,6 +13,7 @@ var router_1 = require('@angular/router');
 var login_service_1 = require('../services/login.service');
 var juguete_service_1 = require('../services/juguete.service');
 var fabricantes_service_1 = require('../services/fabricantes.service');
+var generate_date_pipe_1 = require('../pipes/generate.date.pipe');
 var JugueteDetailComponent = (function () {
     function JugueteDetailComponent(_loginService, _jugueteService, _fabricantesService, _route, _router) {
         this._loginService = _loginService;
@@ -46,7 +47,8 @@ var JugueteDetailComponent = (function () {
             selector: "video-detail",
             templateUrl: "app/view/juguete.detail.html",
             directives: [router_1.ROUTER_DIRECTIVES],
-            providers: [login_service_1.LoginService, juguete_service_1.JugueteService, fabricantes_service_1.FabricantesService]
+            providers: [login_service_1.LoginService, juguete_service_1.JugueteService, fabricantes_service_1.FabricantesService],
+            pipes: [generate_date_pipe_1.GenerateDatePipe]
         }), 
         __metadata('design:paramtypes', [login_service_1.LoginService, juguete_service_1.JugueteService, fabricantes_service_1.FabricantesService, router_1.ActivatedRoute, router_1.Router])
     ], JugueteDetailComponent);

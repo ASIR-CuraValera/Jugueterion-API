@@ -1,7 +1,8 @@
 "use strict";
 var Juguete = (function () {
-    function Juguete(id, titulo, descripcion, estado, imagen, precio, stock, creadoEn, actualizadoEn) {
+    function Juguete(id, fab_id, titulo, descripcion, estado, imagen, precio, stock, creadoEn, actualizadoEn) {
         this.id = id;
+        this.fab_id = fab_id;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.estado = estado;

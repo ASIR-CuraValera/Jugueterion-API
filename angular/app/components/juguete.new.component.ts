@@ -1,30 +1,86 @@
 import {Component, OnInit} from '@angular/core';
 import {ROUTER_DIRECTIVES, Router, ActivatedRoute} from '@angular/router';
+import {Juguete} from '../model/juguete';
 import {LoginService} from '../services/login.service';
 import {UploadService} from '../services/upload.service';
+import {JugueteService} from '../services/juguete.service';
+import {FabricantesService} from '../services/fabricantes.service'
 import {User} from '../model/user';
-import {Juguete} from '../model/juguete';
 
 @Component({
   selector: "video-new",
   templateUrl: "app/view/juguete.new.html",
   directives: [ROUTER_DIRECTIVES],
-  providers: [LoginService, UploadService]
+  providers: [LoginService, UploadService, JugueteService, FabricantesService]
 })
 
 export class JugueteNewComponent implements OnInit
 {
   public titulo: string = "Crear un nuevo juguete";
+  public juguete: Juguete;
+  public faricantes;
+  public status;
+  public errorMessage;
 
   constructor(
     private _loginService: LoginService,
     private _uploadService: UploadService,
+    private _jugueteService: JugueteService,
+    private _fabricantesService: FabricantesService,
     private _route: ActivatedRoute,
     private _router: Router
   ) {}
 
   ngOnInit()
   {
-    console.log("Component juguete.new.component cargado");
+    this.juguete = new Juguete(1, 1, "", "", "nuevo", "", 0, 0, "", "");
+    this._fabricantesService.get().subscribe(
+      response => {
+        this.fabricantes = response.data;
+      },
+      error => {
+        this.errorMessage = <any>error;
+
+        if(this.errorMessage != null) {
+          console.log(this.errorMessage._body);
+          alert("Error en la petición!");
+        }
+      }
+    );
+  }
+
+  callJugueteStatus(value)
+  {
+    if(this.juguete != null && value != null)
+      this.juguete.estado = value;
+  }
+
+  onSubmit()
+  {
+      let token = this._loginService.getToken();
+      this._jugueteService.create(token, this.juguete).subscribe(
+        response => {
+            this.status = response.status;
+            if(this.status != 'success')
+            {
+              this.status = 'error';
+              console.log(response.msg);
+            }
+            else
+            {
+              this.juguete = response.data;
+            }
+
+            //console.log("data: "+response.data);
+        },
+        error => {
+          this.errorMessage = <any>error;
+
+          if(this.errorMessage != null) {
+            console.log(this.errorMessage._body);
+            alert("Error en la petición!");
+          }
+        }
+      );
   }
 }

@@ -110,7 +110,7 @@ class UserController extends Controller
                 $params = json_decode($json);
 
                 $creadoEn = new \DateTime("now");
-                $avatar = "imgs/avatar.png"; // WIP: No puede ser nulo tampoco
+                //$avatar = "imgs/avatar.png"; // WIP: No puede ser nulo tampoco
                 $rol = 1; // WIP: Hacer tabla para roles, 0 = user, 1 = admin
 
                 $email = @$params->email;
@@ -140,7 +140,7 @@ class UserController extends Controller
                         $user->setApellidos($apellidos);
                         $user->setEmail($email);
                         $user->setRol($rol);
-                        $user->setAvatar($avatar);
+                        //$user->setAvatar($avatar);
 
                         $em = $this->getDoctrine()->getManager();
                         $issue_user = $em->getRepository("BDBundle:Usuarios")->findBy(array("email" => $email));

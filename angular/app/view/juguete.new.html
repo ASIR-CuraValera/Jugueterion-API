@@ -3,4 +3,46 @@
     <h1>{{titulo}}</h1>
   <hr>
 
+  <form #newJugueteForm="ngForm" (ngSubmit)="onSubmit()" class="col-md-4" *ngIf="status != 'success'">
+    <p>
+      Paso 1 de 2: Añade la información básica de tu juguete
+    </p>
+    <p>
+      <label>Titulo:</label>
+      <input type="text" class="form-control" #titulo="ngForm" ngControl="title" [(ngModel)]="juguete.titulo" required />
+      <span *ngIf="!titulo.valid && titulo.touched">Debes especificar un título.</span>
+    </p>
+    <p>
+      <label>Descripción:</label>
+      <textarea class="form-control" #descripcion="ngForm" ngControl="descripcion" [(ngModel)]="juguete.descripcion" required cols="30" rows="10"></textarea>
+      <span *ngIf="!descripcion.valid && descripcion.touched">Debes especificar una descripción.</span>
+    </p>
+    <p>
+      <label>Fabricante:</label>
+      <select class="form-control" #fabid="ngForm" ngControl="fabid" [(ngModel)]="juguete.fab_id"> // value is a string or number
+        <option *ngFor="#fab of fabricantes" [value]="fab.id" [attr.selected]="fab.id == '1'">{{fab.nombre}}</option>
+      </select>
+      <span *ngIf="!fabid.valid && fabid.touched">Debes especificar un fabricante.</span>
+    </p>
+    <p>
+      <label>Precio:</label>
+      <input class="form-control" #precio="ngForm" ngControl="precio" type="number" value="0">
+      <span *ngIf="!precio.valid && precio.touched">Debes especificar un precio.</span>
+    </p>
+    <p>
+      <label>Stock:</label>
+      <input class="form-control" #stock="ngForm" ngControl="stock" type="number" value="0">
+      <span *ngIf="!stock.valid && stock.touched">Debes especificar un stock.</span>
+    </p>
+    <p>
+      <label>Estado:</label>
+      <select class="form-control" #estado="ngForm" ngControl="estado" (change)="callJugueteStatus(estado.value)">
+        <option value="nuevo" [attr.selected]="juguete.estado == 'nuevo' ? 'selected' : null">Nuevo</option>
+        <option value="usado" [attr.selected]="juguete.estado == 'usado' ? 'selected' : null">Usado</option>
+      </select>
+      <span *ngIf="!estado.valid && estado.touched">Debes especificar un estado.</span>
+    </p>
+
+    <input type="submit" value="Crear juguete" class="btn btn-success" />
+  </form>
 </div>

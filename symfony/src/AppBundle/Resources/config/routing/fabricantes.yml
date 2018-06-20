@@ -1,0 +1,9 @@
+fabricantes_new:
+    path: /new
+    defaults: { _controller: AppBundle:Fabricantes:new }
+    methods: POST
+
+fabricantes_get:
+    path: /get
+    defaults: { _controller: AppBundle:Fabricantes:get }
+    methods: GET

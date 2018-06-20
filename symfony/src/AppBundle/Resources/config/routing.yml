@@ -13,3 +13,7 @@ app_juguete:
 app_comment:
     resource: "@AppBundle/Resources/config/routing/comment.yml"
     prefix: /comment
+
+app_fabricantes:
+    resource: "@AppBundle/Resources/config/routing/fabricantes.yml"
+    prefix: /fabricantes

@@ -45,26 +45,33 @@ class JugueteController extends Controller
                 $estado = @$params->estado;
 
                 // WIP: Tengo que integrar lo de los fabricantes
-                if(isset($user_id) && isset($fab_id) && isset($titulo) && isset($descripcion) && isset($stock) && isset($precio) && isset($estado))
+                // && isset($fab_id) && isset($descripcion) && isset($stock) && isset($precio) && isset($estado)
+                if(isset($user_id) && isset($titulo))
                 {
                     $em = $this->getDoctrine()->getManager();
 
                     $user = $em->getRepository("BDBundle:Usuarios")->findOneBy(array("id" => $user_id));
-                    $fabricante = $em->getRepository("BDBundle:Fabricantes")->findOneBy(array("id" => $fab_id));
+                    //if(isset($fab_id))
+                        $fabricante = $em->getRepository("BDBundle:Fabricantes")->findOneBy(array("id" => $fab_id));
 
                     $juguete = new Juguetes();
 
                     $juguete->setUsuario($user);
-                    $juguete->setFabricante($fabricante);
+                    //if(isset($fab_id))
+                        $juguete->setFabricante($fabricante);
 
                     $juguete->setCreadoEn($creadoEn);
                     $juguete->setActualizadoEn($actualizadoEn);
                     $juguete->setTitulo($titulo);
+                    //if(isset($descripcion))
                     $juguete->setDescripcion($descripcion);
                     $juguete->setImagen(isset($imagen) ? $imagen : "uploads/juguete/default.png");
-                    $juguete->setPrecio($precio);
-                    $juguete->setStock($stock);
-                    $juguete->setEstado($estado);
+                    //if(isset($precio))
+                        $juguete->setPrecio($precio);
+                    //if(isset($stock))
+                        $juguete->setStock($stock);
+                    //if(isset($estado))
+                        $juguete->setEstado($estado);
 
                     $em->persist($juguete);
                     $em->flush();
@@ -81,7 +88,8 @@ class JugueteController extends Controller
                 else
                     $data = array("status" => "error", "msg" => "Debes establecer todos los parametros del juguete!");
             }
-
+            else
+                $data = array("status" => "error", "msg" => "JSON nulo.");
         }
         else
             $data = array("status" => "error", "code" => 400, "msg" => "Authorization not valid!!");

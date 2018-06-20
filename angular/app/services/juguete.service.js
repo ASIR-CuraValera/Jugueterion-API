@@ -26,6 +26,9 @@ var JugueteService = (function () {
     JugueteService.prototype.getJuguete = function (id) {
         return this._http.get(this.url + "/juguete/detail/" + id).map(function (res) { return res.json(); });
     };
+    JugueteService.prototype.getLastJuguetes = function () {
+        return this._http.get(this.url + "/juguete/last").map(function (res) { return res.json(); });
+    };
     JugueteService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])

@@ -21,6 +21,8 @@ export class JugueteDetailComponent implements OnInit
   public juguete;
   public status;
   public loading = 'show';
+  public lastJuguetes;
+  public statusLastJuguetes;
 
   constructor(
     private _loginService: LoginService,
@@ -55,6 +57,24 @@ export class JugueteDetailComponent implements OnInit
             }
           }
         );
+      }
+    );
+
+    this._jugueteService.getLastJuguetes().subscribe(
+      response => {
+        this.lastJuguetes = response.data;
+        this.statusLastJuguetes = response.status;
+
+        if(this.statusLastJuguetes != 'success')
+          this._router.navigate(["/index"]);
+      },
+      error => {
+        this.errorMessage = <any>error;
+
+        if(this.errorMessage != null) {
+          console.log(this.errorMessage._body);
+          alert("Error en la petición!");
+        }
       }
     );
   }

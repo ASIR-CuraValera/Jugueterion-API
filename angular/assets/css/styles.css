@@ -20,3 +20,38 @@ body {
   margin: -20px 0 0 -20px;
   width: 65px;
 }
+
+
+/* ULTIMOS JUGUETES */
+
+#juguete-list {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  margin-top: 20px;
+}
+
+.last-juguete-item {
+  margin-bottom: 5px;
+  font-size: 13px!important;
+}
+
+.last-juguete-item .last-juguete-image-thumb {
+  overflow: hidden;
+  width: 80px;
+  height: 62px;
+  background-color: #e7e7e7;
+}
+
+.last-juguete-item-thumb img {
+  width: 80px;
+  margin: -7px 0 0 -5px;
+}
+
+.last-juguete-item .data {
+  border: 1px solid #ddd !important;
+  border-radius: 0px 5px 5px 0px;
+  border-left: 0px!important;
+  height: 62px;
+  margin-top: -1px;
+}

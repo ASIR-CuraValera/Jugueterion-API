@@ -27,4 +27,9 @@ export class JugueteService
   {
     return this._http.get(this.url+"/juguete/detail/"+id).map(res => res.json());
   }
+
+  getLastJuguetes()
+  {
+    return this._http.get(this.url+"/juguete/last").map(res => res.json());
+  }
 }

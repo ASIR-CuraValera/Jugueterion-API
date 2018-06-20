@@ -41,6 +41,18 @@ var JugueteDetailComponent = (function () {
                 }
             });
         });
+        this._jugueteService.getLastJuguetes().subscribe(function (response) {
+            _this.lastJuguetes = response.data;
+            _this.statusLastJuguetes = response.status;
+            if (_this.statusLastJuguetes != 'success')
+                _this._router.navigate(["/index"]);
+        }, function (error) {
+            _this.errorMessage = error;
+            if (_this.errorMessage != null) {
+                console.log(_this.errorMessage._body);
+                alert("Error en la petición!");
+            }
+        });
     };
     JugueteDetailComponent = __decorate([
         core_1.Component({

@@ -8,4 +8,15 @@
   <b>Bienvenido</b>, {{identity.nombre}}
   </div>
   <hr>
+  <div class="all-juguetes">
+    <ul id="juguetes-list" *ngIf="juguetes">
+      <li *ngFor="let juguete of juguetes" class="juguete-item col-mod-4 pull-left">
+        <div class="juguete-image-thumb"><img src="http://localhost/iaw/jugueterion-fs/symfony/web/uploads/juguete/{{juguete.imagen}}" onError="this.src = 'http://localhost/iaw/jugueterion-fs/symfony/web/uploads/juguete/default.png'" alt="" *ngIf="juguete.imagen"></div>
+        <div class="data">
+          <h4><a [routerLink]="['/juguete', juguete.id]">{{juguete.titulo}}</a></h4>
+          <p>{{juguete.descripcion}}</p>
+        </div>
+      </li>
+    </ul>
+  </div>
 </div>

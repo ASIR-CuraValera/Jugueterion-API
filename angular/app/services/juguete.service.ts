@@ -32,4 +32,11 @@ export class JugueteService
   {
     return this._http.get(this.url+"/juguete/last").map(res => res.json());
   }
+
+  getJuguetes(page) {
+    if(page == null)
+      page = 1;
+
+      return this._http.get(this.url+"/juguete/list?page="+page).map(res => res.json());
+  }
 }

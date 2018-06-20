@@ -2,13 +2,15 @@
   <img src="assets/images/ajax-gray.gif" alt="">
 </div>
 
-<div class="col-md-12" *ngIf="juguete">
+<div class="col-md-12" *ngIf="juguete && loading == 'hide'">
   <hr>
     <h1>{{juguete.titulo}}</h1>
   <hr>
 
   <div class="col-md-8">
-    <img src="http://localhost/iaw/jugueterion-fs/symfony/web/uploads/juguete/{{juguete.imagen}}" alt="Imagen del juguete" />
+    <div class="juguete-detail-thumb">
+      <img src="http://localhost/iaw/jugueterion-fs/symfony/web/uploads/juguete/{{juguete.imagen}}" onError="this.src = 'http://localhost/iaw/jugueterion-fs/symfony/web/uploads/juguete/default.png'" alt="Imagen del juguete" />  
+    </div>
 
     <div class="panel panel-default juguete-data">
       <div class="panel-heading">
@@ -27,7 +29,7 @@
     <ul id="juguete-list" *ngIf="lastJuguetes">
       <li *ngFor="let juguete of lastJuguetes" class="last-juguete-item col-md-12 pull-left">
         <div class="last-juguete-image-thumb col-md-4 pull-left">
-          <img src="http://localhost/iaw/jugueterion-fs/symfony/web/uploads/juguete/{{juguete.imagen}}" alt="" *ngIf="juguete.imagen" />
+          <img src="http://localhost/iaw/jugueterion-fs/symfony/web/uploads/juguete/{{juguete.imagen}}" onError="this.src = 'http://localhost/iaw/jugueterion-fs/symfony/web/uploads/juguete/default.png'" alt="" *ngIf="juguete.imagen" />
         </div>
 
         <div class="data col-md-8 pull-left">

@@ -26,6 +26,7 @@ var JugueteDetailComponent = (function () {
     JugueteDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
         this._route.params.subscribe(function (params) {
+            _this.loading = 'show';
             var id = +params["id"];
             _this._jugueteService.getJuguete(id).subscribe(function (response) {
                 _this.juguete = response.data;

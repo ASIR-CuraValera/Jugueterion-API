@@ -65,7 +65,7 @@ class JugueteController extends Controller
                     $juguete->setTitulo($titulo);
                     //if(isset($descripcion))
                     $juguete->setDescripcion($descripcion);
-                    $juguete->setImagen(isset($imagen) ? $imagen : "uploads/juguete/default.png");
+                    $juguete->setImagen(isset($imagen) ? $imagen : "default.png");
                     //if(isset($precio))
                         $juguete->setPrecio($precio);
                     //if(isset($stock))

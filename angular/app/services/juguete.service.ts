@@ -20,9 +20,11 @@ export class JugueteService
     let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
 
     return this._http.post(this.url+"/juguete/new", params, {headers: headers})
-                    .map(res => {
-                        //console.log(res.json());
-                        return res.json();
-                    });
+                    .map(res => res.json());
+  }
+
+  getJuguete(id)
+  {
+    return this._http.get(this.url+"/juguete/detail/"+id).map(res => res.json());
   }
 }

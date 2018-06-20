@@ -21,10 +21,10 @@ var JugueteService = (function () {
         var params = "json=" + json + "&authorization=" + token;
         var headers = new http_1.Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         return this._http.post(this.url + "/juguete/new", params, { headers: headers })
-            .map(function (res) {
-            //console.log(res.json());
-            return res.json();
-        });
+            .map(function (res) { return res.json(); });
+    };
+    JugueteService.prototype.getJuguete = function (id) {
+        return this._http.get(this.url + "/juguete/detail/" + id).map(function (res) { return res.json(); });
     };
     JugueteService = __decorate([
         core_1.Injectable(), 

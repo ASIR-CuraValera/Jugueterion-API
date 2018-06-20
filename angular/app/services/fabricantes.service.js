@@ -17,9 +17,7 @@ var FabricantesService = (function () {
         this.url = "http://localhost/iaw/jugueterion-fs/symfony/web/app_dev.php";
     }
     FabricantesService.prototype.get = function () {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
-        return this._http.get(this.url + "/fabricantes/get", { headers: headers })
-            .map(function (res) { return res.json(); });
+        return this._http.get(this.url + "/fabricantes/get").map(function (res) { return res.json(); });
     };
     FabricantesService = __decorate([
         core_1.Injectable(), 

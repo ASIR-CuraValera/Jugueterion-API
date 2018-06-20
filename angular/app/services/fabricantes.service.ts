@@ -12,9 +12,6 @@ export class FabricantesService
 
   get()
   {
-    let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
-
-    return this._http.get(this.url+"/fabricantes/get", {headers: headers})
-                    .map(res => res.json());
+    return this._http.get(this.url+"/fabricantes/get").map(res => res.json());
   }
 }

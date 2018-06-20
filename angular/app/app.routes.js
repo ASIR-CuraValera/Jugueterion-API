@@ -4,6 +4,7 @@ var login_component_1 = require('./components/login.component');
 var register_component_1 = require('./components/register.component');
 var user_edit_component_1 = require('./components/user.edit.component');
 var juguete_new_component_1 = require('./components/juguete.new.component');
+var juguete_detail_component_1 = require('./components/juguete.detail.component');
 var default_component_1 = require('./components/default.component');
 exports.routes = [
     {
@@ -16,7 +17,8 @@ exports.routes = [
     { path: 'login/:id', component: login_component_1.LoginComponent },
     { path: 'register', component: register_component_1.RegisterComponent },
     { path: 'user-edit', component: user_edit_component_1.UserEditComponent },
-    { path: 'create-juguete', component: juguete_new_component_1.JugueteNewComponent }
+    { path: 'create-juguete', component: juguete_new_component_1.JugueteNewComponent },
+    { path: 'juguete/:id', component: juguete_detail_component_1.JugueteDetailComponent }
 ];
 exports.APP_ROUTER_PROVIDERS = [
     router_1.provideRouter(exports.routes)

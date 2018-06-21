@@ -13,42 +13,42 @@ var router_1 = require("@angular/router");
 var login_service_1 = require('../services/login.service');
 var juguete_service_1 = require('../services/juguete.service');
 // Decorador component, indicamos en que etiqueta se va a cargar la plantilla
-var SearchComponent = (function () {
-    function SearchComponent(_loginService, _jugueteService, _route, _router) {
+var ProfileComponent = (function () {
+    function ProfileComponent(_loginService, _jugueteService, _route, _router) {
         this._loginService = _loginService;
         this._jugueteService = _jugueteService;
         this._route = _route;
         this._router = _router;
-        this.titulo = "Busqueda: ";
+        this.titulo = "Perfil";
         this.pagePrev = 1;
         this.pageNext = 1;
     }
-    SearchComponent.prototype.ngOnInit = function () {
+    ProfileComponent.prototype.ngOnInit = function () {
         this.loading = "show";
         this.identity = this._loginService.getIdentity();
-        this.getSearchJuguetes();
+        this.getProfile();
     };
-    SearchComponent.prototype.getSearchJuguetes = function () {
+    ProfileComponent.prototype.getProfile = function () {
         var _this = this;
         this._route.params.subscribe(function (params) {
-            var search = params["search"];
+            var user = params["user"];
             var page = +params["page"];
-            if (!search || search.trim().length == 0) {
-                search = null;
-                _this._router.navigate(["/index"]);
+            if (!user) {
+                user = _this.identity.sub;
             }
             if (!page)
                 page = 1;
-            _this.searchString = search;
             _this.loading = "show";
-            _this._jugueteService.search(page, search).subscribe(function (response) {
+            _this._jugueteService.getProfile(user, page).subscribe(function (response) {
                 if (response.status != "success") {
                     _this.status = "error";
                     console.log(response.msg);
                 }
                 else {
-                    _this.juguetes = response.data;
+                    _this.juguetes = response.data.juguete;
+                    _this.userProfile.response.data.usuario;
                     _this.loading = "hide";
+                    console.log(response.data);
                     _this.pages = [];
                     for (var i = 0; i < response.total_pages; ++i) {
                         _this.pages.push(i);
@@ -75,16 +75,16 @@ var SearchComponent = (function () {
             });
         });
     };
-    SearchComponent = __decorate([
+    ProfileComponent = __decorate([
         core_1.Component({
-            selector: 'search',
-            templateUrl: 'app/view/search.html',
+            selector: 'profile',
+            templateUrl: 'app/view/profile.html',
             directives: [router_1.ROUTER_DIRECTIVES],
             providers: [login_service_1.LoginService, juguete_service_1.JugueteService]
         }), 
         __metadata('design:paramtypes', [login_service_1.LoginService, juguete_service_1.JugueteService, router_1.ActivatedRoute, router_1.Router])
-    ], SearchComponent);
-    return SearchComponent;
+    ], ProfileComponent);
+    return ProfileComponent;
 }());
-exports.SearchComponent = SearchComponent;
-//# sourceMappingURL=search.component.js.map
+exports.ProfileComponent = ProfileComponent;
+//# sourceMappingURL=profile.component.js.map

@@ -8,6 +8,7 @@ import { JugueteEditComponent } from './components/juguete.edit.component';
 import { JugueteDetailComponent } from './components/juguete.detail.component';
 import { DefaultComponent } from './components/default.component';
 import { SearchComponent } from './components/search.component';
+import { ProfileComponent } from './components/profile.component';
 
 export const routes: RouterConfig = [
 	{
@@ -26,7 +27,10 @@ export const routes: RouterConfig = [
 	{ path: 'juguete/:id', component: JugueteDetailComponent },
 	{ path: 'search', component: SearchComponent },
 	{ path: 'search/:search', component: SearchComponent },
-	{ path: 'search/:search/:page', component: SearchComponent }
+	{ path: 'search/:search/:page', component: SearchComponent },
+	{ path: 'profile', component: ProfileComponent },
+	{ path: 'profile/:user', component: ProfileComponent },
+	{ path: 'profile/:user/:page', component: ProfileComponent }
 ];
 
 export const APP_ROUTER_PROVIDERS = [

@@ -8,6 +8,7 @@ var juguete_edit_component_1 = require('./components/juguete.edit.component');
 var juguete_detail_component_1 = require('./components/juguete.detail.component');
 var default_component_1 = require('./components/default.component');
 var search_component_1 = require('./components/search.component');
+var profile_component_1 = require('./components/profile.component');
 exports.routes = [
     {
         path: '',
@@ -25,7 +26,10 @@ exports.routes = [
     { path: 'juguete/:id', component: juguete_detail_component_1.JugueteDetailComponent },
     { path: 'search', component: search_component_1.SearchComponent },
     { path: 'search/:search', component: search_component_1.SearchComponent },
-    { path: 'search/:search/:page', component: search_component_1.SearchComponent }
+    { path: 'search/:search/:page', component: search_component_1.SearchComponent },
+    { path: 'profile', component: profile_component_1.ProfileComponent },
+    { path: 'profile/:user', component: profile_component_1.ProfileComponent },
+    { path: 'profile/:user/:page', component: profile_component_1.ProfileComponent }
 ];
 exports.APP_ROUTER_PROVIDERS = [
     router_1.provideRouter(exports.routes)

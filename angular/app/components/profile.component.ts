@@ -5,17 +5,16 @@ import {JugueteService} from '../services/juguete.service'
 
 // Decorador component, indicamos en que etiqueta se va a cargar la plantilla
 @Component({
-    selector: 'search',
-    templateUrl: 'app/view/search.html',
+    selector: 'profile',
+    templateUrl: 'app/view/profile.html',
     directives: [ROUTER_DIRECTIVES],
     providers: [LoginService, JugueteService]
 })
 
 // Clase del componente donde irán los datos y funcionalidades
-export class SearchComponent implements OnInit
+export class ProfileComponent implements OnInit
 {
-  public titulo = "Busqueda: ";
-  public searchString;
+  public titulo = "Perfil";
   public identity;
   public errorMessage;
   public status;
@@ -24,6 +23,7 @@ export class SearchComponent implements OnInit
   public pages;
   public pagePrev = 1;
   public pageNext = 1;
+  public userProfile;
 
   constructor(
     private _loginService: LoginService,
@@ -35,35 +35,36 @@ export class SearchComponent implements OnInit
   ngOnInit() {
     this.loading = "show";
     this.identity = this._loginService.getIdentity();
-    this.getSearchJuguetes();
+    this.getProfile();
   }
 
-  getSearchJuguetes()
+  getProfile()
   {
     this._route.params.subscribe(params => {
-      let search: any = params["search"];
+      let user: any = params["user"];
       let page: any = +params["page"];
 
-      if(!search || search.trim().length == 0) {
-        search = null;
-        this._router.navigate(["/index"]);
+      if(!user) {
+        user = this.identity.sub;
       }
 
       if(!page)
         page = 1;
 
-      this.searchString = search;
       this.loading = "show";
 
-      this._jugueteService.search(page, search).subscribe(
+      this._jugueteService.getProfile(user, page).subscribe(
         response => {
           if(response.status != "success") {
             this.status = "error";
             console.log(response.msg);
           }
           else {
-            this.juguetes = response.data;
+            this.juguetes = response.data.juguete;
+            this.userProfile.response.data.usuario;
             this.loading = "hide";
+
+            console.log(response.data);
 
             this.pages = [];
             for(let i = 0; i < response.total_pages; ++i) {

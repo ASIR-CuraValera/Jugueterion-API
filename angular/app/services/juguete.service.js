@@ -53,6 +53,12 @@ var JugueteService = (function () {
             http = this._http.get(this.url + "/juguete/search/" + search + "?page=" + page).map(function (res) { return res.json(); });
         return http;
     };
+    JugueteService.prototype.getProfile = function (user, page) {
+        if (page === void 0) { page = null; }
+        if (page == null)
+            page = 1;
+        return this._http.get(this.url + "/user/profile/" + user + "?page=" + page).map(function (res) { return res.json(); });
+    };
     JugueteService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])

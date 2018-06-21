@@ -27,6 +27,7 @@ export class JugueteEditComponent implements OnInit
   public juguete_precio;
   public juguete_stock;
   public changeUpload;
+  public loading;
 
   constructor(
     private _loginService: LoginService,
@@ -41,7 +42,14 @@ export class JugueteEditComponent implements OnInit
 
   ngOnInit()
   {
-    //this.juguete = new Juguete(1, 1, "", "", "nuevo", "", 0, 0, "", "");
+    this.identity = this._loginService.getIdentity();
+
+    if(this.identity == null) {
+      this._router.navigate(["/index"]);
+      return;
+    }
+
+    this.loading = 'show';
     this.getFabricantes();
     this.getJuguete();
   }
@@ -83,15 +91,18 @@ export class JugueteEditComponent implements OnInit
   }
 
   getJuguete() {
-    this.identity = this._loginService.getIdentity();
-
     this._route.params.subscribe(
       params => {
         let id = +params["id"];
 
+        this.loading = 'show';
         this._jugueteService.getJuguete(id).subscribe(
           response => {
             this.juguete = response.data;
+
+            if(!(this.identity && this.identity != null && this.identity.sub == this.juguete.usuario.id))
+              this._router.navigate(["/index"]);
+
             this.status_get_juguete = response.status;
             this.juguete_precio = this.juguete.precio;
             this.juguete_stock = this.juguete.stock;
@@ -99,7 +110,7 @@ export class JugueteEditComponent implements OnInit
             if(this.status_get_juguete != "success")
               this._router.navigate(["/index"]);
 
-            //console.log(this.juguete);
+            this.loading = 'hide';
           },
           error => {
             this.errorMessage = <any>error;

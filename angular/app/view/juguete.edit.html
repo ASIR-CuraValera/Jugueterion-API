@@ -1,4 +1,8 @@
-<div class="col-md-12">
+<div class="loader" *ngIf="loading == 'show'">
+  <img src="assets/images/ajax-gray.gif" alt="">
+</div>
+
+<div class="col-md-12" *ngIf="identity && juguete && juguete.usuario && juguete.usuario.id">
   <hr>
     <h1>Editar juguete</h1>
   <hr>
@@ -11,7 +15,7 @@
     No se han podido guardar los datos.
   </div>
 
-  <form #updateJugueteForm="ngForm" (ngSubmit)="onSubmit()" class="col-md-4" *ngIf="juguete != null">
+  <form #updateJugueteForm="ngForm" (ngSubmit)="onSubmit()" class="col-md-4">
     <p>
       <label>Titulo:</label>
       <input type="text" class="form-control" #titulo="ngForm" ngControl="title" [(ngModel)]="juguete.titulo" required />

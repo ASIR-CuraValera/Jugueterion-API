@@ -25,7 +25,12 @@ var JugueteEditComponent = (function () {
         this.uploadedImage = false;
     }
     JugueteEditComponent.prototype.ngOnInit = function () {
-        //this.juguete = new Juguete(1, 1, "", "", "nuevo", "", 0, 0, "", "");
+        this.identity = this._loginService.getIdentity();
+        if (this.identity == null) {
+            this._router.navigate(["/index"]);
+            return;
+        }
+        this.loading = 'show';
         this.getFabricantes();
         this.getJuguete();
     };
@@ -55,17 +60,19 @@ var JugueteEditComponent = (function () {
     };
     JugueteEditComponent.prototype.getJuguete = function () {
         var _this = this;
-        this.identity = this._loginService.getIdentity();
         this._route.params.subscribe(function (params) {
             var id = +params["id"];
+            _this.loading = 'show';
             _this._jugueteService.getJuguete(id).subscribe(function (response) {
                 _this.juguete = response.data;
+                if (!(_this.identity && _this.identity != null && _this.identity.sub == _this.juguete.usuario.id))
+                    _this._router.navigate(["/index"]);
                 _this.status_get_juguete = response.status;
                 _this.juguete_precio = _this.juguete.precio;
                 _this.juguete_stock = _this.juguete.stock;
                 if (_this.status_get_juguete != "success")
                     _this._router.navigate(["/index"]);
-                //console.log(this.juguete);
+                _this.loading = 'hide';
             }, function (error) {
                 _this.errorMessage = error;
                 if (_this.errorMessage != null) {

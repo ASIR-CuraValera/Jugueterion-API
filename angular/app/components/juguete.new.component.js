@@ -27,6 +27,11 @@ var JugueteNewComponent = (function () {
         this.uploadedImage = false;
     }
     JugueteNewComponent.prototype.ngOnInit = function () {
+        this.identity = this._loginService.getIdentity();
+        if (this.identity == null) {
+            this._router.navigate(["/index"]);
+            return;
+        }
         this.juguete = new juguete_1.Juguete(1, 1, "", "", "nuevo", "", 0, 0, "", "");
         this.getFabricantes();
     };

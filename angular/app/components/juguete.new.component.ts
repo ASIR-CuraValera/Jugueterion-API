@@ -22,6 +22,7 @@ export class JugueteNewComponent implements OnInit
   public status;
   public errorMessage;
   public uploadedImage;
+  public identity;
 
   constructor(
     private _loginService: LoginService,
@@ -36,6 +37,13 @@ export class JugueteNewComponent implements OnInit
 
   ngOnInit()
   {
+    this.identity = this._loginService.getIdentity();
+
+    if(this.identity == null) {
+      this._router.navigate(["/index"]);
+      return;
+    }
+
     this.juguete = new Juguete(1, 1, "", "", "nuevo", "", 0, 0, "", "");
     this.getFabricantes();
   }

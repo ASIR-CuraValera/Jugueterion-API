@@ -16,13 +16,22 @@ var login_service_1 = require('./services/login.service');
 var AppComponent //implements OnInit
  = (function () {
     function AppComponent //implements OnInit
-        (_loginService) {
+        (_loginService, _route, _router) {
         this._loginService = _loginService;
+        this._route = _route;
+        this._router = _router;
     }
     AppComponent //implements OnInit
     .prototype.ngOnInit = function () {
         this.identity = this._loginService.getIdentity();
         this.token = this._loginService.getToken();
+    };
+    AppComponent //implements OnInit
+    .prototype.search = function () {
+        if (this.searchString)
+            this._router.navigate(["/search", this.searchString]);
+        else
+            this._router.navigate(["/index"]);
     };
     AppComponent //implements OnInit
      = __decorate([
@@ -32,7 +41,7 @@ var AppComponent //implements OnInit
             directives: [router_1.ROUTER_DIRECTIVES],
             providers: [login_service_1.LoginService]
         }), 
-        __metadata('design:paramtypes', [login_service_1.LoginService])
+        __metadata('design:paramtypes', [login_service_1.LoginService, router_1.ActivatedRoute, router_1.Router])
     ], AppComponent //implements OnInit
     );
     return AppComponent //implements OnInit

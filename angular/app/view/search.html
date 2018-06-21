@@ -1,0 +1,44 @@
+<div class="col-md-12">
+  <hr>
+  <h1>{{titulo}} {{searchString}}</h1>
+  <hr>
+  <div class="all-juguetes">
+    <div class="loader" *ngIf="loading == 'show'">
+      <img src="assets/images/ajax-gray.gif" alt="">
+    </div>
+
+    <ul id="juguetes-list" *ngIf="juguetes && loading == 'hide'">
+      <li *ngFor="let juguete of juguetes" class="juguete-item col-mod-4 pull-left">
+        <div class="juguete-image-thumb">
+          <img src="http://localhost/iaw/jugueterion-fs/symfony/web/uploads/juguete/{{juguete.imagen}}" onError="this.src = 'http://localhost/iaw/jugueterion-fs/symfony/web/uploads/juguete/default.png'" alt="" *ngIf="juguete.imagen">
+        </div>
+        <div class="data">
+          <h4><a [routerLink]="['/juguete', juguete.id]">{{juguete.titulo}}</a></h4>
+          <p>Subido por <a [routerLink]="['/index']">{{juguete.usuario.nombre}} {{juguete.usuario.apellidos}}</a></p>
+          <div class="juguete-buttons" *ngIf="identity && identity != null && identity.sub == juguete.usuario.id">
+            <a [routerLink]="['/edit-juguete', juguete.id]" class="btn btn-primary">Editar</a>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="clearfix"></div>
+
+  <ul class="pagination" *ngIf="searchString">
+      <li>
+        <a [routerLink]="['/search', searchString, pagePrev]" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li *ngFor="let page of pages">
+        <a [routerLink]="['/search', searchString, page + 1]">{{page + 1}}</a>
+      </li>
+      <li>
+        <a [routerLink]="['/index', searchString, pageNext]" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+</div>

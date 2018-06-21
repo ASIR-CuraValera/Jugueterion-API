@@ -7,6 +7,7 @@ import { JugueteNewComponent } from './components/juguete.new.component';
 import { JugueteEditComponent } from './components/juguete.edit.component';
 import { JugueteDetailComponent } from './components/juguete.detail.component';
 import { DefaultComponent } from './components/default.component';
+import { SearchComponent } from './components/search.component';
 
 export const routes: RouterConfig = [
 	{
@@ -22,7 +23,10 @@ export const routes: RouterConfig = [
 	{ path: 'user-edit', component: UserEditComponent },
 	{ path: 'create-juguete', component: JugueteNewComponent},
 	{ path: 'edit-juguete/:id', component: JugueteEditComponent},
-	{ path: 'juguete/:id', component: JugueteDetailComponent }
+	{ path: 'juguete/:id', component: JugueteDetailComponent },
+	{ path: 'search', component: SearchComponent },
+	{ path: 'search/:search', component: SearchComponent },
+	{ path: 'search/:search/:page', component: SearchComponent }
 ];
 
 export const APP_ROUTER_PROVIDERS = [

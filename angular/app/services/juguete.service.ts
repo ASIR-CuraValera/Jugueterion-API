@@ -49,4 +49,17 @@ export class JugueteService
 
       return this._http.get(this.url+"/juguete/list?page="+page).map(res => res.json());
   }
+
+  search(search = null, page = null) {
+    if(page == null)
+      page = 1;
+
+      let http: any;
+      if(search == null)
+        http = this._http.get(this.url+"/juguete/search").map(res => res.json());
+      else
+        http = this._http.get(this.url+"/juguete/search/"+search+"?page="+page).map(res => res.json());
+
+      return http;
+  }
 }

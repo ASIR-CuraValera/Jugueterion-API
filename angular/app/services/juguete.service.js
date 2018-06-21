@@ -41,6 +41,18 @@ var JugueteService = (function () {
             page = 1;
         return this._http.get(this.url + "/juguete/list?page=" + page).map(function (res) { return res.json(); });
     };
+    JugueteService.prototype.search = function (search, page) {
+        if (search === void 0) { search = null; }
+        if (page === void 0) { page = null; }
+        if (page == null)
+            page = 1;
+        var http;
+        if (search == null)
+            http = this._http.get(this.url + "/juguete/search").map(function (res) { return res.json(); });
+        else
+            http = this._http.get(this.url + "/juguete/search/" + search + "?page=" + page).map(function (res) { return res.json(); });
+        return http;
+    };
     JugueteService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])

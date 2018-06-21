@@ -16,9 +16,12 @@ export class AppComponent //implements OnInit
 {
   public identity;
   public token;
+  public searchString: string;
 
   constructor(
-    private _loginService: LoginService
+    private _loginService: LoginService,
+    private _route: ActivatedRoute,
+    private _router: Router
   ) {}
 
   ngOnInit()
@@ -27,4 +30,11 @@ export class AppComponent //implements OnInit
     this.token = this._loginService.getToken();
   }
 
+  search()
+  {
+    if(this.searchString)
+      this._router.navigate(["/search", this.searchString]);
+    else
+      this._router.navigate(["/index"]);
+  }
 }

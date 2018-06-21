@@ -28,6 +28,7 @@ export class JugueteEditComponent implements OnInit
   public juguete_stock;
   public changeUpload;
   public loading;
+  public imageUploaded;
 
   constructor(
     private _loginService: LoginService,
@@ -52,6 +53,8 @@ export class JugueteEditComponent implements OnInit
     this.loading = 'show';
     this.getFabricantes();
     this.getJuguete();
+
+    this.uploadedImage = "false";
   }
 
   callJugueteStatus(value)
@@ -159,10 +162,15 @@ export class JugueteEditComponent implements OnInit
         this.resultUpload = result;
         this.juguete.imagen = this.resultUpload.filename;
         console.log(this.juguete);
+        this.uploadedImage = "true";
       },
       (error) => {
         console.log(error);
       }
     );
+  }
+
+  returnIndex() {
+    this._router.navigate(["/index"]);
   }
 }

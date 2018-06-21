@@ -33,6 +33,7 @@ var JugueteEditComponent = (function () {
         this.loading = 'show';
         this.getFabricantes();
         this.getJuguete();
+        this.uploadedImage = "false";
     };
     JugueteEditComponent.prototype.callJugueteStatus = function (value) {
         if (this.juguete != null && value != null)
@@ -106,9 +107,13 @@ var JugueteEditComponent = (function () {
             _this.resultUpload = result;
             _this.juguete.imagen = _this.resultUpload.filename;
             console.log(_this.juguete);
+            _this.uploadedImage = "true";
         }, function (error) {
             console.log(error);
         });
+    };
+    JugueteEditComponent.prototype.returnIndex = function () {
+        this._router.navigate(["/index"]);
     };
     JugueteEditComponent = __decorate([
         core_1.Component({

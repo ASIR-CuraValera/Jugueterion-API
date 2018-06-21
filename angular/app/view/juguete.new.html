@@ -64,5 +64,8 @@
       <div id="upload-progress-bar" class="progress-bar progress-bar-success" rol="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"></div>
     </div>
     <p id="status"></p>
+    <button class="btn btn-warning" (click)="returnIndex()" *ngIf="imageUploaded == 'true'">
+      Volver al inicio
+    </button>
   </div>
 </div>

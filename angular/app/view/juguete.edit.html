@@ -1,0 +1,69 @@
+<div class="col-md-12">
+  <hr>
+    <h1>Editar juguete</h1>
+  <hr>
+
+  <div class="alert alert-success" *ngIf="status == 'success'">
+    Datos básicos de tu nuevo juguete guardados. Ahora deberas añadir una imagen.
+  </div>
+
+  <div class="alert alert-danger" *ngIf="status == 'error'">
+    No se han podido guardar los datos.
+  </div>
+
+  <form #updateJugueteForm="ngForm" (ngSubmit)="onSubmit()" class="col-md-4" *ngIf="juguete != null">
+    <p>
+      <label>Titulo:</label>
+      <input type="text" class="form-control" #titulo="ngForm" ngControl="title" [(ngModel)]="juguete.titulo" required />
+      <span *ngIf="!titulo.valid && titulo.touched">Debes especificar un título.</span>
+    </p>
+    <p>
+      <label>Descripción:</label>
+      <textarea class="form-control" #descripcion="ngForm" ngControl="descripcion" [(ngModel)]="juguete.descripcion" required cols="30" rows="10"></textarea>
+      <span *ngIf="!descripcion.valid && descripcion.touched">Debes especificar una descripción.</span>
+    </p>
+    <p>
+      <label>Fabricante:</label>
+      <select class="form-control" #fabid="ngForm" ngControl="fabid" [(ngModel)]="juguete.fabricante.id">
+        <option *ngFor="#fab of fabricantes" [value]="fab.id" [attr.selected]="fab.id == '1'">{{fab.nombre}}</option>
+      </select>
+      <span *ngIf="!fabid.valid && fabid.touched">Debes especificar un fabricante.</span>
+    </p>
+    <p>
+      <label>Precio:</label>
+      <input class="form-control" #precio="ngForm" ngControl="precio" type="number" [(ngModel)]="juguete.precio" value="{{juguete_precio}}">
+      <span *ngIf="!precio.valid && precio.touched">Debes especificar un precio.</span>
+    </p>
+    <p>
+      <label>Stock:</label>
+      <input class="form-control" #stock="ngForm" ngControl="stock" type="number" [(ngModel)]="juguete.stock" value="{{juguete_stock}}">
+      <span *ngIf="!stock.valid && stock.touched">Debes especificar un stock.</span>
+    </p>
+    <p>
+      <label>Estado:</label>
+      <select class="form-control" #estado="ngForm" ngControl="estado" [(ngModel)]="juguete.estado" (change)="callJugueteStatus(estado.value)">
+        <option value="nuevo" [attr.selected]="juguete.estado == 'nuevo' ? 'selected' : null">Nuevo</option>
+        <option value="usado" [attr.selected]="juguete.estado == 'usado' ? 'selected' : null">Usado</option>
+      </select>
+      <span *ngIf="!estado.valid && estado.touched">Debes especificar un estado.</span>
+    </p>
+
+    <input type="submit" value="Editar juguete" class="btn btn-success" [disabled]="!updateJugueteForm.form.valid" />
+  </form>
+
+  <button class="btn btn-warning" (click)="setChangeUpload('image')" *ngIf="!changeUpload || changeUpload == 'video'">Actualizar imagen</button>
+  <div class="col-md-4" *ngIf="changeUpload == 'image'">
+    <h4>Imagen del juguete</h4>
+    <p>
+      <input type="file" placeholder="Subir imagen..." (change)="fileChangeEvent($event)" />
+    </p>
+    <div class="progress">
+      <div id="upload-progress-bar" class="progress-bar progress-bar-success" rol="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"></div>
+    </div>
+    <p id="status"></p>
+
+    <button class="btn btn-warning" (click)="setChangeUpload('false')">
+      Cerrar
+    </button>
+  </div>
+</div>

@@ -23,6 +23,16 @@ export class JugueteService
                     .map(res => res.json());
   }
 
+  update(token, juguete: Juguete, id)
+  {
+    let json = JSON.stringify(juguete);
+    let params = "json="+json+"&authorization="+token;
+    let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+
+    return this._http.post(this.url+"/juguete/edit/"+id, params, {headers: headers})
+                    .map(res => res.json());
+  }
+
   getJuguete(id)
   {
     return this._http.get(this.url+"/juguete/detail/"+id).map(res => res.json());

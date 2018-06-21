@@ -58,7 +58,7 @@ var DefaultComponent //implements OnInit
                     else {
                         _this.pagePrev = page;
                     }
-                    if (page < response.total_pages || pages == 1) {
+                    if (page < response.total_pages || page == 1) {
                         _this.pageNext = page + 1;
                     }
                     else {

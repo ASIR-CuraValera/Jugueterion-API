@@ -70,7 +70,7 @@ export class DefaultComponent //implements OnInit
               this.pagePrev = page;
             }
 
-            if(page < response.total_pages || pages == 1) {
+            if(page < response.total_pages || page == 1) {
               this.pageNext = page + 1;
             }
             else {

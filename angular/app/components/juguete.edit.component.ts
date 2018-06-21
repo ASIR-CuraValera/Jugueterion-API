@@ -8,20 +8,25 @@ import {FabricantesService} from '../services/fabricantes.service'
 import {User} from '../model/user';
 
 @Component({
-  selector: "juguete-new",
-  templateUrl: "app/view/juguete.new.html",
+  selector: "juguete-edit",
+  templateUrl: "app/view/juguete.edit.html",
   directives: [ROUTER_DIRECTIVES],
   providers: [LoginService, UploadService, JugueteService, FabricantesService]
 })
 
-export class JugueteNewComponent implements OnInit
+export class JugueteEditComponent implements OnInit
 {
-  public titulo: string = "Crear un nuevo juguete";
+  //public titulo: string = "Editar juguete";
   public juguete: Juguete;
   public fabricantes;
   public status;
+  public status_get_juguete;
   public errorMessage;
   public uploadedImage;
+  public identity;
+  public juguete_precio;
+  public juguete_stock;
+  public changeUpload;
 
   constructor(
     private _loginService: LoginService,
@@ -36,8 +41,9 @@ export class JugueteNewComponent implements OnInit
 
   ngOnInit()
   {
-    this.juguete = new Juguete(1, 1, "", "", "nuevo", "", 0, 0, "", "");
+    //this.juguete = new Juguete(1, 1, "", "", "nuevo", "", 0, 0, "", "");
     this.getFabricantes();
+    this.getJuguete();
   }
 
   callJugueteStatus(value)
@@ -48,32 +54,64 @@ export class JugueteNewComponent implements OnInit
 
   onSubmit()
   {
-    let token = this._loginService.getToken();
-    this._jugueteService.create(token, this.juguete).subscribe(
-      response => {
-          this.status = response.status;
-          if(this.status != 'success')
-          {
-            this.status = 'error';
-            console.log(response.msg);
-          }
-          else
-          {
-            this.juguete = response.data;
-          }
+    this._route.params.subscribe(
+        params => {
+          let id = +params["id"];
 
-          //console.log("data: "+response.data);
-      },
-      error => {
-        this.errorMessage = <any>error;
+          let token = this._loginService.getToken();
+          this._jugueteService.update(token, this.juguete, id).subscribe(
+            response => {
+                this.status = response.status;
 
-        if(this.errorMessage != null) {
-          console.log(this.errorMessage._body);
-          alert("Error en la petición!");
+                if(this.status != 'success')
+                {
+                  this.status = 'error';
+                  console.log(response.msg);
+                }
+            },
+            error => {
+              this.errorMessage = <any>error;
+
+              if(this.errorMessage != null) {
+                console.log(this.errorMessage._body);
+                alert("Error en la petición!");
+              }
+            }
+          );
         }
+    );
+  }
+
+  getJuguete() {
+    this.identity = this._loginService.getIdentity();
+
+    this._route.params.subscribe(
+      params => {
+        let id = +params["id"];
+
+        this._jugueteService.getJuguete(id).subscribe(
+          response => {
+            this.juguete = response.data;
+            this.status_get_juguete = response.status;
+            this.juguete_precio = this.juguete.precio;
+            this.juguete_stock = this.juguete.stock;
+
+            if(this.status_get_juguete != "success")
+              this._router.navigate(["/index"]);
+
+            //console.log(this.juguete);
+          },
+          error => {
+            this.errorMessage = <any>error;
+
+            if(this.errorMessage != null) {
+              console.log(this.errorMessage._body);
+              alert("Error en la petición!");
+            }
+          }
+        );
       }
     );
-
   }
 
   getFabricantes() {
@@ -90,6 +128,10 @@ export class JugueteNewComponent implements OnInit
         }
       }
     );
+  }
+
+  setChangeUpload(value) {
+    this.changeUpload = value;
   }
 
   public filesToUpload: Array<File>;

@@ -10,52 +10,72 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var juguete_1 = require('../model/juguete');
 var login_service_1 = require('../services/login.service');
 var upload_service_1 = require('../services/upload.service');
 var juguete_service_1 = require('../services/juguete.service');
 var fabricantes_service_1 = require('../services/fabricantes.service');
-var JugueteNewComponent = (function () {
-    function JugueteNewComponent(_loginService, _uploadService, _jugueteService, _fabricantesService, _route, _router) {
+var JugueteEditComponent = (function () {
+    function JugueteEditComponent(_loginService, _uploadService, _jugueteService, _fabricantesService, _route, _router) {
         this._loginService = _loginService;
         this._uploadService = _uploadService;
         this._jugueteService = _jugueteService;
         this._fabricantesService = _fabricantesService;
         this._route = _route;
         this._router = _router;
-        this.titulo = "Crear un nuevo juguete";
         this.uploadedImage = false;
     }
-    JugueteNewComponent.prototype.ngOnInit = function () {
-        this.juguete = new juguete_1.Juguete(1, 1, "", "", "nuevo", "", 0, 0, "", "");
+    JugueteEditComponent.prototype.ngOnInit = function () {
+        //this.juguete = new Juguete(1, 1, "", "", "nuevo", "", 0, 0, "", "");
         this.getFabricantes();
+        this.getJuguete();
     };
-    JugueteNewComponent.prototype.callJugueteStatus = function (value) {
+    JugueteEditComponent.prototype.callJugueteStatus = function (value) {
         if (this.juguete != null && value != null)
             this.juguete.estado = value;
     };
-    JugueteNewComponent.prototype.onSubmit = function () {
+    JugueteEditComponent.prototype.onSubmit = function () {
         var _this = this;
-        var token = this._loginService.getToken();
-        this._jugueteService.create(token, this.juguete).subscribe(function (response) {
-            _this.status = response.status;
-            if (_this.status != 'success') {
-                _this.status = 'error';
-                console.log(response.msg);
-            }
-            else {
-                _this.juguete = response.data;
-            }
-            //console.log("data: "+response.data);
-        }, function (error) {
-            _this.errorMessage = error;
-            if (_this.errorMessage != null) {
-                console.log(_this.errorMessage._body);
-                alert("Error en la petición!");
-            }
+        this._route.params.subscribe(function (params) {
+            var id = +params["id"];
+            var token = _this._loginService.getToken();
+            _this._jugueteService.update(token, _this.juguete, id).subscribe(function (response) {
+                _this.status = response.status;
+                if (_this.status != 'success') {
+                    _this.status = 'error';
+                    console.log(response.msg);
+                }
+            }, function (error) {
+                _this.errorMessage = error;
+                if (_this.errorMessage != null) {
+                    console.log(_this.errorMessage._body);
+                    alert("Error en la petición!");
+                }
+            });
         });
     };
-    JugueteNewComponent.prototype.getFabricantes = function () {
+    JugueteEditComponent.prototype.getJuguete = function () {
+        var _this = this;
+        this.identity = this._loginService.getIdentity();
+        this._route.params.subscribe(function (params) {
+            var id = +params["id"];
+            _this._jugueteService.getJuguete(id).subscribe(function (response) {
+                _this.juguete = response.data;
+                _this.status_get_juguete = response.status;
+                _this.juguete_precio = _this.juguete.precio;
+                _this.juguete_stock = _this.juguete.stock;
+                if (_this.status_get_juguete != "success")
+                    _this._router.navigate(["/index"]);
+                //console.log(this.juguete);
+            }, function (error) {
+                _this.errorMessage = error;
+                if (_this.errorMessage != null) {
+                    console.log(_this.errorMessage._body);
+                    alert("Error en la petición!");
+                }
+            });
+        });
+    };
+    JugueteEditComponent.prototype.getFabricantes = function () {
         var _this = this;
         this._fabricantesService.get().subscribe(function (response) {
             _this.fabricantes = response.data;
@@ -67,7 +87,10 @@ var JugueteNewComponent = (function () {
             }
         });
     };
-    JugueteNewComponent.prototype.fileChangeEvent = function (fileInput) {
+    JugueteEditComponent.prototype.setChangeUpload = function (value) {
+        this.changeUpload = value;
+    };
+    JugueteEditComponent.prototype.fileChangeEvent = function (fileInput) {
         var _this = this;
         this.filesToUpload = fileInput.target.files;
         var token = this._loginService.getToken();
@@ -80,16 +103,16 @@ var JugueteNewComponent = (function () {
             console.log(error);
         });
     };
-    JugueteNewComponent = __decorate([
+    JugueteEditComponent = __decorate([
         core_1.Component({
-            selector: "juguete-new",
-            templateUrl: "app/view/juguete.new.html",
+            selector: "juguete-edit",
+            templateUrl: "app/view/juguete.edit.html",
             directives: [router_1.ROUTER_DIRECTIVES],
             providers: [login_service_1.LoginService, upload_service_1.UploadService, juguete_service_1.JugueteService, fabricantes_service_1.FabricantesService]
         }), 
         __metadata('design:paramtypes', [login_service_1.LoginService, upload_service_1.UploadService, juguete_service_1.JugueteService, fabricantes_service_1.FabricantesService, router_1.ActivatedRoute, router_1.Router])
-    ], JugueteNewComponent);
-    return JugueteNewComponent;
+    ], JugueteEditComponent);
+    return JugueteEditComponent;
 }());
-exports.JugueteNewComponent = JugueteNewComponent;
-//# sourceMappingURL=juguete.new.component.js.map
+exports.JugueteEditComponent = JugueteEditComponent;
+//# sourceMappingURL=juguete.edit.component.js.map

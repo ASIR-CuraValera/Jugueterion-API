@@ -22,7 +22,7 @@
           <h4><a [routerLink]="['/juguete', juguete.id]">{{juguete.titulo}}</a></h4>
           <p>Subido por <a [routerLink]="['/index']">{{juguete.usuario.nombre}} {{juguete.usuario.apellidos}}</a></p>
           <div class="juguete-buttons" *ngIf="identity && identity != null && identity.sub == juguete.usuario.id">
-            <a [routerLink]="['/index']" class="btn btn-primary">Editar</a>
+            <a [routerLink]="['/edit-juguete', juguete.id]" class="btn btn-primary">Editar</a>
           </div>
         </div>
         <div class="clearfix"></div>

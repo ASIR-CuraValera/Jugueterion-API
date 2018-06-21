@@ -20,6 +20,10 @@ export class DefaultComponent //implements OnInit
   public errorMessage;
   public status;
   public juguetes;
+  public loading;
+  public pages;
+  public pagePrev = 1;
+  public pageNext = 1;
 
   constructor(
     private _loginService: LoginService,
@@ -29,6 +33,7 @@ export class DefaultComponent //implements OnInit
   ) {}
 
   ngOnInit() {
+    this.loading = "show";
     this.identity = this._loginService.getIdentity();
     this.getAllJuguetes();
   }
@@ -41,14 +46,37 @@ export class DefaultComponent //implements OnInit
       if(!page)
         page = 1;
 
+      this.loading = "show";
+
       this._jugueteService.getJuguetes(page).subscribe(
         response => {
           if(response.status != "success") {
             this.status = "error";
             console.log(response.msg);
           }
-          else
+          else {
             this.juguetes = response.data;
+            this.loading = "hide";
+
+            this.pages = [];
+            for(let i = 0; i < response.total_pages; ++i) {
+              this.pages.push(i);
+            }
+
+            if(page >=2) {
+              this.pagePrev = page - 1;
+            }
+            else {
+              this.pagePrev = page;
+            }
+
+            if(page < response.total_pages || pages == 1) {
+              this.pageNext = page + 1;
+            }
+            else {
+              this.pageNext = page;
+            }
+          }
         },
         error => {
           this.errorMessage = <any>error;

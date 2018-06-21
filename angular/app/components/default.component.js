@@ -23,9 +23,12 @@ var DefaultComponent //implements OnInit
         this._route = _route;
         this._router = _router;
         this.titulo = "Portada";
+        this.pagePrev = 1;
+        this.pageNext = 1;
     }
     DefaultComponent //implements OnInit
     .prototype.ngOnInit = function () {
+        this.loading = "show";
         this.identity = this._loginService.getIdentity();
         this.getAllJuguetes();
     };
@@ -36,13 +39,32 @@ var DefaultComponent //implements OnInit
             var page = +params["page"];
             if (!page)
                 page = 1;
+            _this.loading = "show";
             _this._jugueteService.getJuguetes(page).subscribe(function (response) {
                 if (response.status != "success") {
                     _this.status = "error";
                     console.log(response.msg);
                 }
-                else
+                else {
                     _this.juguetes = response.data;
+                    _this.loading = "hide";
+                    _this.pages = [];
+                    for (var i = 0; i < response.total_pages; ++i) {
+                        _this.pages.push(i);
+                    }
+                    if (page >= 2) {
+                        _this.pagePrev = page - 1;
+                    }
+                    else {
+                        _this.pagePrev = page;
+                    }
+                    if (page < response.total_pages || pages == 1) {
+                        _this.pageNext = page + 1;
+                    }
+                    else {
+                        _this.pageNext = page;
+                    }
+                }
             }, function (error) {
                 _this.errorMessage = error;
                 if (_this.errorMessage != null) {

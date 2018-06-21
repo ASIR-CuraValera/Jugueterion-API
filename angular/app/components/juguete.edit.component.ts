@@ -103,8 +103,10 @@ export class JugueteEditComponent implements OnInit
           response => {
             this.juguete = response.data;
 
-            if(!(this.identity && this.identity != null && this.identity.sub == this.juguete.usuario.id))
-              this._router.navigate(["/index"]);
+            // Este arreglo no funciona
+            //if(this.juguete != null)
+            //  if(!(this.identity && this.identity != null && this.identity.sub == this.juguete.usuario.id))
+            //    this._router.navigate(["/index"]);
 
             this.status_get_juguete = response.status;
             this.juguete_precio = this.juguete.precio;

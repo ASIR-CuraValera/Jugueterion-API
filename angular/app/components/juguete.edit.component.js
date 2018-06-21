@@ -66,8 +66,10 @@ var JugueteEditComponent = (function () {
             _this.loading = 'show';
             _this._jugueteService.getJuguete(id).subscribe(function (response) {
                 _this.juguete = response.data;
-                if (!(_this.identity && _this.identity != null && _this.identity.sub == _this.juguete.usuario.id))
-                    _this._router.navigate(["/index"]);
+                // Este arreglo no funciona
+                //if(this.juguete != null)
+                //  if(!(this.identity && this.identity != null && this.identity.sub == this.juguete.usuario.id))
+                //    this._router.navigate(["/index"]);
                 _this.status_get_juguete = response.status;
                 _this.juguete_precio = _this.juguete.precio;
                 _this.juguete_stock = _this.juguete.stock;
